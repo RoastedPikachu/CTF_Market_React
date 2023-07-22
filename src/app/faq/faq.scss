@@ -1,0 +1,128 @@
+main {
+  padding: 100px 12.5% 30px 17.5%;
+  width: 70%;
+  min-height: 580px;
+  h2 {
+    padding-bottom: 40px;
+    color: #ffffff;
+    font-size: 64px;
+    font-weight: 900;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .paragraph {
+    position: relative;
+    padding: 10px 0;
+    width: 90%;
+    height: auto;
+    min-height: 50px;
+    border: 2px solid #42d4ba;
+    border-width: 2px 0 0 0;
+    span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 50px;
+      height: auto;
+      .paragraphTitle {
+        height: 100%;
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: 700;
+        font-family: 'Space Grotesk', sans-serif;
+        line-height: 50px;
+      }
+      img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+      }
+    }
+    .paragraphDescription {
+      padding-bottom: 20px;
+      margin-top: 20px;
+      width: 100%;
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: justify;
+      line-height: 1.5;
+      br {
+        padding-top: 10px;
+      }
+    }
+  }
+  .paragraph:last-child {
+    border-width: 2px 0 2px 0;
+  }
+}
+
+@media(max-width: 480px) {
+  main {
+    padding: 60px 5% 20px 5%;
+    width: 90%;
+    min-height: 510px;
+    h2 {
+      padding-bottom: 15px;
+      font-size: 46px;
+    }
+    .paragraph {
+      width: 100%;
+      span {
+        .paragraphTitle {
+          width: 95%;
+          font-size: 24px;
+          line-height: 30px;
+        }
+      }
+      .paragraphDescription {
+        margin-top: 0;
+        font-size: 18px;
+      }
+    }
+    .openParagraph {
+      span {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media(min-width: 1960px) and (min-height: 1080px) {
+  main {
+    padding: 130px 15% 20px 23.5%;
+    width: 60%;
+    min-height: 550px;
+  }
+}
+
+@media(min-width: 2560px) and (min-height: 1440px) {
+  main {
+    padding: 170px 7.5% 40px 17.5%;
+    width: 75%;
+    min-height: 810px;
+    h2 {
+      padding-bottom: 50px;
+      font-size: 72px;
+    }
+    .paragraph {
+      min-height: 100px;
+      height: auto;
+      span {
+        .paragraphTitle {
+          height: auto;
+          font-size: 40px;
+          line-height: 100px;
+        }
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+      .paragraphDescription {
+        font-size: 30px;
+      }
+    }
+  }
+}

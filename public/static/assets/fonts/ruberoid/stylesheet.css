@@ -1,0 +1,216 @@
+@font-face {
+    font-family: 'Ruberoid Oblique';
+    src: url('Ruberoid-Oblique.eot');
+    src: local('Ruberoid Oblique'), local('Ruberoid-Oblique'),
+        url('Ruberoid-Oblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Oblique.woff2') format('woff2'),
+        url('Ruberoid-Oblique.woff') format('woff'),
+        url('Ruberoid-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Extra';
+    src: url('Ruberoid-ExtraLight.eot');
+    src: local('Ruberoid Extra Light'), local('Ruberoid-ExtraLight'),
+        url('Ruberoid-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-ExtraLight.woff2') format('woff2'),
+        url('Ruberoid-ExtraLight.woff') format('woff'),
+        url('Ruberoid-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Bold Oblique';
+    src: url('Ruberoid-BoldOblique.eot');
+    src: local('Ruberoid Bold Oblique'), local('Ruberoid-BoldOblique'),
+        url('Ruberoid-BoldOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-BoldOblique.woff2') format('woff2'),
+        url('Ruberoid-BoldOblique.woff') format('woff'),
+        url('Ruberoid-BoldOblique.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: url('Ruberoid-Bold.eot');
+    src: local('Ruberoid Bold'), local('Ruberoid-Bold'),
+        url('Ruberoid-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Bold.woff2') format('woff2'),
+        url('Ruberoid-Bold.woff') format('woff'),
+        url('Ruberoid-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Light Oblique';
+    src: url('Ruberoid-LightOblique.eot');
+    src: local('Ruberoid Light Oblique'), local('Ruberoid-LightOblique'),
+        url('Ruberoid-LightOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-LightOblique.woff2') format('woff2'),
+        url('Ruberoid-LightOblique.woff') format('woff'),
+        url('Ruberoid-LightOblique.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Extra';
+    src: url('Ruberoid-ExtraBold.eot');
+    src: local('Ruberoid Extra Bold'), local('Ruberoid-ExtraBold'),
+        url('Ruberoid-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-ExtraBold.woff2') format('woff2'),
+        url('Ruberoid-ExtraBold.woff') format('woff'),
+        url('Ruberoid-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Extra Bold Oblique';
+    src: url('Ruberoid-ExtraBoldOblique.eot');
+    src: local('Ruberoid Extra Bold Oblique'), local('Ruberoid-ExtraBoldOblique'),
+        url('Ruberoid-ExtraBoldOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-ExtraBoldOblique.woff2') format('woff2'),
+        url('Ruberoid-ExtraBoldOblique.woff') format('woff'),
+        url('Ruberoid-ExtraBoldOblique.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Medium Oblique';
+    src: url('Ruberoid-MediumOblique.eot');
+    src: local('Ruberoid Medium Oblique'), local('Ruberoid-MediumOblique'),
+        url('Ruberoid-MediumOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-MediumOblique.woff2') format('woff2'),
+        url('Ruberoid-MediumOblique.woff') format('woff'),
+        url('Ruberoid-MediumOblique.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: url('Ruberoid-Light.eot');
+    src: local('Ruberoid Light'), local('Ruberoid-Light'),
+        url('Ruberoid-Light.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Light.woff2') format('woff2'),
+        url('Ruberoid-Light.woff') format('woff'),
+        url('Ruberoid-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Extra Light Oblique';
+    src: url('Ruberoid-ExtraLightOblique.eot');
+    src: local('Ruberoid Extra Light Oblique'), local('Ruberoid-ExtraLightOblique'),
+        url('Ruberoid-ExtraLightOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-ExtraLightOblique.woff2') format('woff2'),
+        url('Ruberoid-ExtraLightOblique.woff') format('woff'),
+        url('Ruberoid-ExtraLightOblique.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: url('Ruberoid-Medium.eot');
+    src: local('Ruberoid Medium'), local('Ruberoid-Medium'),
+        url('Ruberoid-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Medium.woff2') format('woff2'),
+        url('Ruberoid-Medium.woff') format('woff'),
+        url('Ruberoid-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Semi Bold Oblique';
+    src: url('Ruberoid-SemiBoldOblique.eot');
+    src: local('Ruberoid Semi Bold Oblique'), local('Ruberoid-SemiBoldOblique'),
+        url('Ruberoid-SemiBoldOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-SemiBoldOblique.woff2') format('woff2'),
+        url('Ruberoid-SemiBoldOblique.woff') format('woff'),
+        url('Ruberoid-SemiBoldOblique.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Thin Oblique';
+    src: url('Ruberoid-ThinOblique.eot');
+    src: local('Ruberoid Thin Oblique'), local('Ruberoid-ThinOblique'),
+        url('Ruberoid-ThinOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-ThinOblique.woff2') format('woff2'),
+        url('Ruberoid-ThinOblique.woff') format('woff'),
+        url('Ruberoid-ThinOblique.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Semi';
+    src: url('Ruberoid-SemiBold.eot');
+    src: local('Ruberoid Semi Bold'), local('Ruberoid-SemiBold'),
+        url('Ruberoid-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-SemiBold.woff2') format('woff2'),
+        url('Ruberoid-SemiBold.woff') format('woff'),
+        url('Ruberoid-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: url('Ruberoid-Thin.eot');
+    src: local('Ruberoid Thin'), local('Ruberoid-Thin'),
+        url('Ruberoid-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Thin.woff2') format('woff2'),
+        url('Ruberoid-Thin.woff') format('woff'),
+        url('Ruberoid-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: url('Ruberoid-Regular.eot');
+    src: local('Ruberoid'), local('Ruberoid-Regular'),
+        url('Ruberoid-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-Regular.woff2') format('woff2'),
+        url('Ruberoid-Regular.woff') format('woff'),
+        url('Ruberoid-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ruberoid Ultra Light Oblique';
+    src: url('Ruberoid-UltraLightOblique.eot');
+    src: local('Ruberoid Ultra Light Oblique'), local('Ruberoid-UltraLightOblique'),
+        url('Ruberoid-UltraLightOblique.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-UltraLightOblique.woff2') format('woff2'),
+        url('Ruberoid-UltraLightOblique.woff') format('woff'),
+        url('Ruberoid-UltraLightOblique.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ruberoid Ultra';
+    src: url('Ruberoid-UltraLight.eot');
+    src: local('Ruberoid Ultra Light'), local('Ruberoid-UltraLight'),
+        url('Ruberoid-UltraLight.eot?#iefix') format('embedded-opentype'),
+        url('Ruberoid-UltraLight.woff2') format('woff2'),
+        url('Ruberoid-UltraLight.woff') format('woff'),
+        url('Ruberoid-UltraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+

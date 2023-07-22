@@ -1,0 +1,229 @@
+main {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 50px 17.5% 0 15%;
+  width: 70%;
+  height: 950px;
+  img {
+    width: 25%;
+    height: 50px;
+  }
+  section {
+    margin: 0;
+    width: 100%;
+    height: 880px;
+    background-color: #1e1e1e;
+    border: 4px solid rgba(158, 158, 158, 0.25);
+    border-radius: 10px;
+    form {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 50px 60px;
+      width: calc(100% - 120px);
+      height: calc(100% - 100px);
+      textarea {
+        padding: 15px 15px;
+        background-color: rgba(158, 158, 158, 0.25);
+        border: none;
+        border-radius: 5px;
+        color: #c4c4c4;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: 'SF Pro Text', sans-serif;
+        outline: none;
+        resize: none;
+      }
+      ::placeholder {
+        color: #c4c4c4;
+        opacity: 1;
+      }
+      #LoadPhoto {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 400px;
+        height: 500px;
+        div {
+          width: 100%;
+          height: 450px;
+          background-color: rgba(158, 158, 158, 0.25);
+          border-radius: 10px;
+          .photoLoader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 450px;
+            color: rgba(30, 30, 30, 0.6);
+            font-size: 26px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          #Photo {
+            display: none;
+          }
+        }
+        span {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 50%;
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            img {
+              width: 20px;
+              height: 16px;
+            }
+          }
+          p {
+            color: #307fe2;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'SF Pro Text', sans-serif;
+          }
+        }
+      }
+      aside {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 420px;
+        height: 100%;
+        #Title {
+          width: 100%;
+          height: 90px;
+        }
+        #Description {
+          width: 100%;
+          height: 170px;
+        }
+        select {
+          margin-right: 5%;
+          width: 90%;
+          height: 60px;
+          background-color: transparent;
+          border: 2px solid rgba(158, 158, 158, 0.25);
+          border-width: 2px 0 2px 0;
+          color: #c4c4c4;
+          font-size: 16px;
+          font-weight: 600;
+          font-family: 'SF Pro Text', sans-serif;
+          outline: none;
+          cursor: pointer;
+        }
+        #Price {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 90%;
+          height: 60px;
+          label {
+            color: #999999;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'SF Pro Text', sans-serif;
+          }
+          #PriceInput {
+            padding: 10px 20px;
+            width: 75%;
+            height: 30px;
+            background-color: rgba(158, 158, 158, 0.25);
+            border: none;
+            border-radius: 5px;
+            color: #c4c4c4;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'SF Pro Text', sans-serif;
+            outline: none;
+          }
+        }
+        #Sizes {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          width: 100%;
+          height: 120px;
+          span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 45px;
+            p {
+              color: #999999;
+              font-size: 16px;
+              font-weight: 500;
+              font-family: 'SF Pro Text', sans-serif;
+              text-align: right;
+            }
+            .sizesText {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 55px;
+              height: 100%;
+              background-color: rgba(158, 158, 158, 0.25);
+              border: 1.5px solid #979797;
+              border-radius: 10px;
+              p {
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 500;
+                font-family: 'DM Sans', sans-serif;
+              }
+            }
+            .sizesInput {
+              padding: 0 10px;
+              width: 35px;
+              height: 100%;
+              background-color: rgba(158, 158, 158, 0.25);
+              border: 1.5px solid #979797;
+              border-radius: 10px;
+              color: #ffffff;
+              font-size: 14px;
+              font-weight: 500;
+              font-family: 'DM Sans', sans-serif;
+              outline: none;
+            }
+          }
+        }
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 130px;
+          height: 50px;
+          background-color: #307fe2;
+          border: none;
+          border-radius: 5px;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 600;
+          font-family: 'SF Pro Text', sans-serif;
+          transition: color, background-color 500ms ease;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: transparent;
+          border: 2px dashed #307fe2;
+          color: #307fe2;
+        }
+      }
+    }
+  }
+}
