@@ -1,10 +1,19 @@
 'use client';
 import React, { useState } from 'react';
 
+import TheHeader from '@/widgets/shared/header/TheHeader';
+
 import './faq.scss';
 
+interface Paragraph {
+    id: number,
+    title: string,
+    isOpen: boolean,
+    description: string,
+}
+
 const Page = () => {
-    const paragraphs = useState([
+    const [paragraphs, setParagraphs] = useState([
         {
             id: 1,
             title: 'Где взять токен для регистрации?',
@@ -52,24 +61,28 @@ const Page = () => {
               <br> Проблемы с функционалом/бэком - <a href="https://t.me/allelleo" style="color: #42d4ba; text-decoration: none; outline: none;">@allelleo</a>
               <br> Хочешь сказать много комплиментов по поводу дизайна - хвали <a href="https://t.me/fewiid" style="color: #42d4ba; text-decoration: none; outline: none;">@fewiid</a>`
         },
-    ])
+    ] as Paragraph[]);
 
     return (
-        <main>
-            <h2>FAQ</h2>
+        <>
+            <TheHeader/>
 
-            {paragraphs.map((paragraph:any) => (
-                <div key={paragraph.id} className={`paragraph ${paragraph.isOpen ? 'openParagraph' : ''}`}>
-                    <span>
-                        <p className="paragraphTitle">{ paragraph.title }</p>
+            <main>
+                <h2>FAQ</h2>
 
-                        <img src="/static/assets/images/openMoreIcon.svg" alt="Открыть подробности" onClick={() => paragraph.isOpen = !paragraph.isOpen}/>
-                    </span>
+                {paragraphs.map((paragraph:any) => (
+                    <div key={paragraph.id} className={`paragraph ${paragraph.isOpen ? 'openParagraph' : ''}`}>
+                        <span>
+                            <p className="paragraphTitle">{ paragraph.title }</p>
 
-                    {paragraph.isOpen && <p className="paragraphDescription" v-html={paragraph.description}></p>}
-                </div>
-            ))}
-        </main>
+                            <img src="/static/assets/images/openMoreIcon.svg" alt="Открыть подробности" onClick={() => {paragraph.isOpen = !paragraph.isOpen; setParagraphs([...paragraphs])}}/>
+                        </span>
+
+                        {paragraph.isOpen && <p className="paragraphDescription" dangerouslySetInnerHTML={{ __html: paragraph.description}}></p>}
+                    </div>
+                ))}
+            </main>
+        </>
     );
 };
 
