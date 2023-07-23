@@ -2,7 +2,6 @@ footer {
   bottom: 0;
   width: 100%;
   height: 400px;
-  background-image: url('./footerBackground.svg');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -71,9 +70,10 @@ footer {
       }
 
       span {
-        margin-top: 15px;
         display: flex;
         justify-content: space-between;
+        margin-top: 15px;
+        width: 85%;
 
         p {
           color: #ffffff;

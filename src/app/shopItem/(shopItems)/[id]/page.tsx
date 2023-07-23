@@ -1,8 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
-import { useRouter } from 'next/router';
-
 import { shoppingCartSlice } from '@/store/storeReducers/ShoppingCartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { AppState } from '@/store';
@@ -32,9 +30,11 @@ interface ShopItem {
     sizes: Size[],
 }
 
-const Page = () => {
-    const router = useRouter();
+interface ShopItemProps {
+    params: { id: number }
+}
 
+const Page: React.FC<ShopItemProps> = ({ params }) => {
     const { addItemToShoppingCartAction } = shoppingCartSlice.actions;
     const dispatch = useAppDispatch();
 
@@ -128,7 +128,7 @@ const Page = () => {
     }
 
     const getInfoAboutShopItem = () => {
-        const url = new URL(`https://ctfmarket.ru:8080/api/v1/product/${router.query.id}`);
+        const url = new URL(`https://ctfmarket.ru:8080/api/v1/product/${params.id}`);
 
         api.get(url.toString())
             .then((res:any) => {
@@ -166,18 +166,18 @@ const Page = () => {
 
     const getPreviousPhoto = () => {
         if(targetImageIndex === 0) {
-            setTargetImageIndex(item.images.length);
+            setTargetImageIndex(item.images.length - 1);
+        } else {
+            setTargetImageIndex(targetImageIndex - 1);
         }
-
-        setTargetImageIndex(targetImageIndex - 1);
     };
 
     const getNextPhoto = () => {
         if(targetImageIndex === item.images.length - 1) {
-            setTargetImageIndex(-1);
+            setTargetImageIndex(0);
+        } else {
+            setTargetImageIndex(targetImageIndex + 1);
         }
-
-        setTargetImageIndex(targetImageIndex + 1);
     };
 
     useEffect(() => {
@@ -205,6 +205,7 @@ const Page = () => {
 
                         <span>
                             <img src="/static/assets/images/arrowRightIcon.svg" alt="Назад" onClick={() => getPreviousPhoto()}/>
+
                             <img src="/static/assets/images/arrowRightIcon.svg" alt="Вперёд" onClick={() => getNextPhoto()}/>
                         </span>
                     </div>

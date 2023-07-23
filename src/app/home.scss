@@ -115,48 +115,42 @@ main {
   }
 
   .nextSliderEl {
-    .appearance-enter-active,
-    .appearance-leave-active {
-      transition: 1500ms ease;
-    }
-
-    .appearance-enter-from {
+    .banner-enter {
       transform: translateX(200%);
     }
 
-    .appearance-enter-to {
+    .banner-enter-active {
+      transform: translateX(0);
+      transition: 1500ms ease;
+    }
+
+    .banner-exit {
       transform: translateX(0);
     }
 
-    .appearance-leave-from {
-      transform: translateX(0);
-    }
-
-    .appearance-leave-to {
+    .banner-exit-active {
       transform: translateX(-120%);
+      transition: 1500ms ease;
     }
   }
 
   .previousSliderEl {
-    .appearance-enter-active,
-    .appearance-leave-active {
-      transition: 1500ms ease;
-    }
-
-    .appearance-enter-from {
+    .banner-enter {
       transform: translateX(-120%);
     }
 
-    .appearance-enter-to {
+    .banner-enter-active {
+      transform: translateX(0);
+      transition: 1500ms ease;
+    }
+
+    .banner-exit {
       transform: translateX(0);
     }
 
-    .appearance-leave-from {
-      transform: translateX(0);
-    }
-
-    .appearance-leave-to {
+    .banner-exit-active {
       transform: translateX(120%);
+      transition: 1500ms ease;
     }
   }
 

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import axios from 'axios';
 
@@ -17,7 +17,7 @@ export default function() {
         api.interceptors.response.use(response => {
             return response;
         }, error => {
-            console.log(`Ошибка на серверной стороне: ${error.message}`);
+            console.log(`Ошибка на стороне сервера: ${error.message}`);
 
             const parseErrorNumberRegex = /\d+/g;
 
@@ -26,18 +26,22 @@ export default function() {
             switch(error) {
                 case 404:
                     setErrorMess('Пользователь по такому токену не найден');
+                    console.log(errorMess);
                     break;
 
                 case 405:
                     setErrorMess('Пользователя с такой почтой несуществует');
+                    console.log(errorMess);
                     break;
 
                 case 409:
                     setErrorMess('Пользователь с таким токеном уже существует');
+                    console.log(errorMess);
                     break;
 
                 case 412:
                     setErrorMess('Неверный пароль');
+                    console.log(errorMess);
                     break;
             }
         })

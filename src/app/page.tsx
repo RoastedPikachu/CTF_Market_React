@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import Link from 'next/link';
 import axios from "axios/index";
 
@@ -23,7 +23,10 @@ interface Category {
 interface Banner {
     id: number,
     title: string,
-    isActive: boolean
+    isActive: boolean,
+    description: string,
+    image: string,
+    nodeRef: React.RefObject<HTMLInputElement>
 }
 
 interface ShopItem {
@@ -69,27 +72,39 @@ export default function Home() {
             id: 1,
             title: 'Кружки',
             isActive: true,
+            description: 'Баннер кружек',
+            image: '/static/assets/images/mugBanner.svg',
+            nodeRef: createRef()
         },
         {
             id: 2,
             title: 'Футболки',
             isActive: false,
+            description: 'Баннер футболок',
+            image: '/static/assets/images/tshirtBanner.svg',
+            nodeRef: createRef()
         },
         {
             id: 3,
             title: 'Толстовки',
             isActive: false,
+            description: 'Баннер толстовок',
+            image: '/static/assets/images/sweatshirtBanner.svg',
+            nodeRef: createRef()
         },
         {
             id: 4,
             title: 'Книги',
             isActive: false,
+            description: 'Баннер книжек',
+            image: '/static/assets/images/bookBanner.svg',
+            nodeRef: createRef()
         },
     ] as Banner[]);
 
     let [shopItems, setShopItems] = useState([] as ShopItem[]);
 
-    let bannerInterval:ReturnType<typeof setInterval> = setInterval(() => getNextPhoto(), 5000);
+    let bannerInterval: ReturnType<typeof setInterval>;
 
     const setBanner = (category:Category) => {
         if(!isPause) {
@@ -138,6 +153,7 @@ export default function Home() {
     }
 
     const getNextPhoto = () => {
+        console.log(targetId);
         categories[targetId].isActive = false;
         banners[targetId].isActive = false;
 
@@ -152,6 +168,8 @@ export default function Home() {
     }
 
     useEffect(() => {
+        bannerInterval = setInterval(() => getNextPhoto(), 5000);
+
         if(window.innerWidth < 480) {
             getShopItems(0, 1);
         } else {
@@ -170,7 +188,7 @@ export default function Home() {
             <main>
                 <div id="MovingImgWrapper">
                     <div id="TopLogoText">
-                        <span><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/ctf_market/public/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/ctf_market/public/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/ctf_market/public/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/ctf_market/public/static/assets/images/marketNeonText.svg" alt="MARKET"/></span>
+                        <span><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/><p>CTF</p><img src="/static/assets/images/marketNeonText.svg" alt="MARKET"/></span>
                     </div>
 
                     <div id="BottomLogoText">
@@ -193,25 +211,15 @@ export default function Home() {
                         {banners.map((banner:Banner) => (
                             <CSSTransition
                                 key={banner.id}
-                                className="banner"
+                                nodeRef={banner.nodeRef}
+                                timeout={1500}
+                                classNames='banner'
                             >
-                                banner.isActive && <div>
-                                    {banner.id === 1 && <Link href={{pathname: '/shopItems/[category]', query: {category: banner.title}}} className="bannerImgRoute">
-                                        <img src="/static/assets/images/mugBanner.svg" alt="Баннер кружек"/>
-                                    </Link>}
-
-                                    {banner.id === 2 && <Link href={{pathname: '/shopItems[category]', query: {category: banner.title}}} className="bannerImgRoute">
-                                        <img src="/static/assets/images/tshirtBanner.svg" alt="Баннер футболок"/>
-                                    </Link>}
-
-                                    {banner.id === 3 && <Link href={{pathname: '/shopItems[category]', query: {category: banner.title}}} className="bannerImgRoute">
-                                        <img src="/static/assets/images/sweatshirtBanner.svg" alt="Баннер толстовок"/>
-                                    </Link>}
-
-                                    {banner.id === 4 && <Link href={{pathname: '/shopItems[category]', query: {category: banner.title}}} className="bannerImgRoute">
-                                        <img src="/static/assets/images/bookBanner.svg" alt="Баннер книжек"/>
-                                    </Link>}
-                                </div>
+                                {banner.isActive && <div ref={banner.nodeRef}>
+                                    <Link href={`/shopItems/${banner.title}`} className="bannerImgRoute">
+                                        <img src={banner.image} alt={banner.description}/>
+                                    </Link>
+                                </div>}
                             </CSSTransition>
                         ))}
                     </TransitionGroup>

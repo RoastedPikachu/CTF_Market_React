@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import { CSSTransition } from 'react-transition-group';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import axiosMixins from "@/mixins/axiosMixins";
 
@@ -35,7 +35,7 @@ interface Size {
 }
 
 const Page = () => {
-    const router = useRouter();
+    let router = useRouter();
 
     const { api, initAPI } = axiosMixins();
 
@@ -176,59 +176,59 @@ const Page = () => {
                     </button>
                 </div>
 
-                    <CSSTransition nodeRef={nodeRef} timeout={400}>
-                        {isModalFilterActive &&
-                            <div id="ModalFilterWindow" ref={nodeRef}>
-                                <div id="ModalFilterWindow_Categories">
+                <CSSTransition nodeRef={nodeRef} timeout={400} classNames='modalFilter'>
+                    {isModalFilterActive &&
+                        <div id="ModalFilterWindow" ref={nodeRef} key='transitionModalFilter'>
+                            <div id="ModalFilterWindow_Categories">
 
-                                    <p>Категория</p>
+                                <p>Категория</p>
 
-                                    <span>
-                                        {categories.map((category:Category) => (
-                                            <p
-                                                key={category.id}
-                                                className={ category.isActive ? 'categoryActive' : '' }
-                                                onClick={() => category.isActive = !category.isActive}
-                                            >
-                                                { category.title }
-                                            </p>
+                                <span>
+                                    {categories.map((category:Category) => (
+                                        <p
+                                            key={category.id}
+                                            className={ category.isActive ? 'categoryActive' : '' }
+                                            onClick={() => category.isActive = !category.isActive}
+                                        >
+                                            { category.title }
+                                        </p>
                                         ))}
-                                    </span>
-                                </div>
+                                </span>
+                            </div>
 
-                                {(categories[1].isActive || categories[2].isActive) &&
-                                    <div id="ModalFilterWindow_Sizes">
-                                        <p>Размеры</p>
-
-                                        <div>
-                                            {sizes.map((size) => (
-                                                <button
-                                                    key={size.id}
-                                                    className={ size.isActive ? 'active' : '' }
-                                                    onClick={() => size.isActive = !size.isActive}
-                                                >
-                                                    { size.prop }
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                }
-
-                                <div id="ModalFilterWindow_Price">
-                                    <p>Цена</p>
+                            {(categories[1].isActive || categories[2].isActive) &&
+                                <div id="ModalFilterWindow_Sizes">
+                                    <p>Размеры</p>
 
                                     <div>
-                                        <input type="text" placeholder="Мин. цена" value={minPrice} onChange={(event) => event.target.value}/>
-
-                                        <input type="text" placeholder="Макс. цена" value={maxPrice} onChange={(event) => event.target.value}/>
+                                        {sizes.map((size) => (
+                                            <button
+                                                key={size.id}
+                                                className={ size.isActive ? 'active' : '' }
+                                                onClick={() => size.isActive = !size.isActive}
+                                            >
+                                                { size.prop }
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
+                            }
 
-                                <button id="ModalFilterWindow_Accept" onClick={() => filterShopItems()}>Применить</button>
+                            <div id="ModalFilterWindow_Price">
+                                <p>Цена</p>
 
-                                <button id="ModalFilterWindow_Reset" onClick={() => { setShopItems(initialShopItems); setMinPrice(''); setMaxPrice('')}}>Сбросить фильтры</button>
+                                <div>
+                                    <input type="text" placeholder="Мин. цена" value={minPrice} onChange={(event) => event.target.value}/>
+
+                                    <input type="text" placeholder="Макс. цена" value={maxPrice} onChange={(event) => event.target.value}/>
+                                </div>
                             </div>
-                        }
+
+                            <button id="ModalFilterWindow_Accept" onClick={() => filterShopItems()}>Применить</button>
+
+                            <button id="ModalFilterWindow_Reset" onClick={() => { setShopItems(initialShopItems); setMinPrice(''); setMaxPrice('')}}>Сбросить фильтры</button>
+                        </div>
+                    }
                 </CSSTransition>
 
                 <section id="ShopItemsContainer">

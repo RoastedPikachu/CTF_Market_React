@@ -61,7 +61,7 @@ main {
 @media(max-width: 480px) {
   main {
     padding: 60px 5% 20px 5%;
-    width: 90%;
+    width: 100%;
     min-height: 510px;
     h2 {
       padding-bottom: 15px;
@@ -92,7 +92,7 @@ main {
 @media(min-width: 1960px) and (min-height: 1080px) {
   main {
     padding: 130px 15% 20px 23.5%;
-    width: 60%;
+    width: 100%;
     min-height: 550px;
   }
 }
@@ -100,7 +100,7 @@ main {
 @media(min-width: 2560px) and (min-height: 1440px) {
   main {
     padding: 170px 7.5% 40px 17.5%;
-    width: 75%;
+    width: 100%;
     min-height: 810px;
     h2 {
       padding-bottom: 50px;

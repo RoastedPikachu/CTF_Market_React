@@ -3,9 +3,9 @@ main {
   width: 75%;
   height: 900px;
   #ShopItemsLogo {
-    margin-top: 100px;
+    padding-top: 100px;
     width: 45%;
-    height: 120px;
+    height: 220px;
   }
   #MainShopItemInfo {
     display: flex;
@@ -16,6 +16,9 @@ main {
     width: 100%;
     height: 600px;
     #MainShopItemInfo_Images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       width: 42.5%;
       height: 100%;
       .mainShopItemInfo_Images_Photo {
@@ -29,8 +32,8 @@ main {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 30%;
-        width: 40%;
+        padding: 0 10% 0 10%;
+        width: 80%;
         height: 15%;
         img {
           width: 45%;
@@ -158,9 +161,9 @@ main {
     min-height: 900px;
 
     #ShopItemsLogo {
-      margin-top: 50px;
+      padding-top: 50px;
       width: 60%;
-      height: 50px;
+      height: 100px;
     }
 
     #MainShopItemInfo {
@@ -171,7 +174,7 @@ main {
 
       #MainShopItemInfo_Images {
         width: 100%;
-        height: 60%;
+        height: 450px;
 
         .mainShopItemInfo_Images_Photo {
           height: 100%;
@@ -237,9 +240,9 @@ main {
 @media(max-width: 380px) {
   main {
     #ShopItemsLogo {
-      margin-top: 50px;
+      padding-top: 50px;
       width: 65%;
-      height: 55px;
+      height: 105px;
     }
 
     #MainShopItemInfo {
@@ -287,17 +290,37 @@ main {
   }
 }
 
+@media(max-width: 350px) {
+  main {
+    #MainShopItemInfo {
+      aside {
+        div {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
 @media(min-width: 1920px) and (min-height: 1080px) {
   main {
     margin: 0;
     padding: 0 12.5% 0 17.5%;
-    width: 70%;
+    width: 100%;
+    height: 950px;
 
     #ShopItemsLogo {
       width: 37.5%;
     }
 
     #MainShopItemInfo {
+      height: 700px;
+      #MainShopItemInfo_Images {
+        span {
+          margin-top: 25px;
+        }
+      }
+
       aside {
         div {
           width: 32.5%;
@@ -323,12 +346,12 @@ main {
 @media(min-width: 2560px) and (min-height: 1440px) {
   main {
     padding: 0 12.5% 0 22.5%;
-    width: 65%;
+    width: 100%;
     height: 1200px;
     #ShopItemsLogo {
-      margin-top: 130px;
-      width: 32.5%;
-      height: 130px;
+      padding-top: 130px;
+      width: 35%;
+      height: 260px;
     }
 
     #MainShopItemInfo {

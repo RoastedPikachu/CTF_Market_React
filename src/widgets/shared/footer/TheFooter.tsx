@@ -15,7 +15,7 @@ const TheFooter = () => {
     }, []);
 
     return (
-        <footer>
+        <footer style={{backgroundImage: `url('/static/assets/images/footerBackground.svg')`}}>
             <div id="BlurContacts">
                 <h2>ИНФОРМАЦИЯ</h2>
 

@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import axiosMixins from "@/mixins/axiosMixins";
 
-import './signIn.scss';
+import './signUp.scss';
 
 const Page = () => {
     const router = useRouter();

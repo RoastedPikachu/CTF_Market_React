@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 import { userSlice } from '@/store/storeReducers/UserSlice';
 import { cookieSlice } from '@/store/storeReducers/CookieSlice';
@@ -13,7 +13,7 @@ import axiosMixins from "@/mixins/axiosMixins";
 import './signIn.scss';
 
 const Page = () => {
-    const router = useRouter();
+    let router = useRouter();
 
     let { api, errorMess, initAPI } = axiosMixins();
 
