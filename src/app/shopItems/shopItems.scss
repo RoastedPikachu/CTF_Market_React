@@ -6,7 +6,7 @@ main {
   #ShopItemsLogo {
     padding-top: 100px;
     width: 50%;
-    height: 150px;
+    height: 250px;
   }
   #ShopItemsNav {
     display: flex;
@@ -44,25 +44,23 @@ main {
       margin-left: -30px;
     }
   }
-  .v-enter-active,
-  .v-leave-active {
+  .modalFilter-enter {
+    margin-top: -20px;
+    opacity: 0;
+  }
+  .modalFilter-enter-active {
+    margin-top: 0;
+    opacity: 1;
     transition: 250ms ease;
   }
-  .v-enter-from {
-    margin-top: -20px;
-    opacity: 0;
-  }
-  .v-enter-to {
+  .modalFilter-exit {
     margin-top: 0;
     opacity: 1;
   }
-  .v-leave-from {
-    margin-top: 0;
-    opacity: 1;
-  }
-  .v-leave-to {
+  .modalFilter-exit-active {
     margin-top: -20px;
     opacity: 0;
+    transition: 250ms ease;
   }
   #ModalFilterWindow {
     padding-bottom: 20px;
@@ -153,7 +151,7 @@ main {
         input {
           padding: 0 15px;
           height: 100%;
-          width: 40%;
+          width: calc(40% + 32px);
           background-color: #434343;
           border: 1px solid #bababa;
           border-radius: 15px;
@@ -208,7 +206,7 @@ main {
     align-items: center;
     flex-wrap: wrap;
     margin-top: -20px;
-    padding: 20px 0;
+    padding: 20px 0 40px 0;
     width: 100%;
     height: auto;
   }

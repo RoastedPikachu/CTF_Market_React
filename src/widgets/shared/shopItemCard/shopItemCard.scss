@@ -2,8 +2,8 @@
   position: relative;
   margin-top: 20px;
   padding: 20px;
-  width: 320px;
-  height: 460px;
+  width: calc(320px + 44px);
+  height: calc(460px + 44px);
   background-color: #313134;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 35px;
