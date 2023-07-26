@@ -3,7 +3,7 @@
   margin-top: 20px;
   padding: 20px;
   width: calc(320px + 44px);
-  height: calc(460px + 44px);
+  height: calc(480px + 44px);
   background-color: #313134;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 35px;
@@ -13,7 +13,7 @@
     margin-top: 0;
     padding-bottom: 0;
     width: 100%;
-    height: 80%;
+    height: 77.5%;
     border-radius: 30px;
     img {
       width: 100%;
@@ -34,7 +34,7 @@
     padding-bottom: 20px;
     width: 100%;
     height: auto;
-    min-height: 90px;
+    min-height: calc(90px + 30px);
     .shopItemTitle {
       color: #ffffff;
       font-size: 1.375em;
@@ -44,10 +44,10 @@
     div {
       display: flex;
       justify-content: space-between;
-      margin-top: 7.5px;
+      margin-top: 2.5px;
       padding-bottom: 0;
       width: 100%;
-      min-height: 50px;
+      min-height: 55px;
       .shopItemDescription {
         width: 60%;
         color: rgba(255, 255, 255, 0.4);
@@ -59,7 +59,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: -5px;
+        margin-top: 5px;
         padding-top: 5px;
         width: 35%;
         height: 45px;
@@ -90,8 +90,8 @@
   .shopItem {
     margin-top: 15px;
     padding: 10px 2.5% 15px 2.5%;
-    width: calc(46% - 3%);
-    height: 260px;
+    width: calc(46% + 3%);
+    height: calc(260px + 25px);
     border-radius: 20px;
     .shopItem_ImgContainer {
       padding-bottom: 0;
@@ -110,7 +110,7 @@
       }
       div {
         align-items: center;
-        margin-top: 7.5px;
+        margin-top: 2.5px;
         height: auto;
         min-height: 0;
         .shopItemDescription {
@@ -159,13 +159,13 @@
 @media(max-width: 380px) {
   .shopItem {
     padding: 10px 2.5%;
-    height: 205px;
+    height: calc(205px + 20px);
     div {
       .shopItemTitle {
         font-size: 0.625em;
       }
       div {
-        margin-top: 5px;
+        margin-top: 2.5px;
         .shopItemDescription {
           font-size: 0.425em;
         }
@@ -177,6 +177,7 @@
             font-size: 0.525em;
           }
           img {
+            margin-top: -2.5px;
             width: 12.5px;
             height: 12.5px;
           }
@@ -188,6 +189,14 @@
 
 @media(max-width: 350px) {
   .shopItem {
-    height: 185px;
+    padding: 10px 2.5% 15px 2.5%;
+    height: calc(205px + 25px);
+    div {
+      div {
+        button {
+          width: 37.5%;
+        }
+      }
+    }
   }
 }

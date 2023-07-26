@@ -1,4 +1,5 @@
 footer {
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 400px;
@@ -73,7 +74,7 @@ footer {
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
-        width: 85%;
+        width: 95%;
 
         p {
           color: #ffffff;
@@ -84,7 +85,6 @@ footer {
       }
       span:last-child {
         margin-top: 7.5px;
-        width: 85%;
       }
     }
     #BottomInfo_SocialNetworks {
@@ -274,6 +274,34 @@ footer {
 
       p {
         font-size: 1.625em;
+      }
+    }
+  }
+}
+
+@media(min-width: 1960px) and (min-height: 1080px) {
+  footer {
+    #BlurContacts {
+      width: auto;
+    }
+
+    #BottomInfo {
+      #BottomInfo_Contacts {
+        span {
+          width: 75%;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 2560px) and (min-height: 1440px) {
+  footer {
+    #BottomInfo {
+      #BottomInfo_Contacts {
+        span {
+          width: 60%;
+        }
       }
     }
   }

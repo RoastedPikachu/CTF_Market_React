@@ -42,7 +42,7 @@ const ShopItemCard:React.FC<ShopItemCardProps> = ({shopItems, initialShopItems})
                     </div>
 
                     <div>
-                        <p className="shopItemTitle">{ shopItem.title.length < 20 ? shopItem.title : `${shopItem.title.slice(0, 20)}&#8230;` }</p>
+                        <p className="shopItemTitle">{ shopItem.title.length < 20 ? shopItem.title : `${shopItem.title.slice(0, 17)}...` }</p>
 
                         <div>
                             <p className="shopItemDescription">{ shopItem.description }</p>
