@@ -200,14 +200,14 @@ footer {
     height: 200px;
 
     #BlurContacts {
-      height: 30px;
+      height: 50px;
 
       h2 {
-        font-size: 1.625em;
+        font-size: 1.5em;
       }
 
       p {
-        font-size: 1.625em;
+        font-size: 1.5em;
       }
     }
 
@@ -267,14 +267,10 @@ footer {
   footer {
     #BlurContacts {
       margin-top: 20px;
+    }
 
-      h2 {
-        font-size: 1.625em;
-      }
-
-      p {
-        font-size: 1.625em;
-      }
+    #BottomInfo {
+      margin: 10px 10% 0 7.5%;
     }
   }
 }

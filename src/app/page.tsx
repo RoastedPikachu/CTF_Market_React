@@ -3,7 +3,6 @@ import React, { useState, useEffect, createRef } from 'react';
 import Link from 'next/link';
 import axios from "axios/index";
 
-// @ts-ignore
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import TheHeader from '@/widgets/shared/header/TheHeader';
@@ -74,7 +73,7 @@ export default function Home() {
             isActive: true,
             description: 'Баннер кружек',
             image: '/static/assets/images/mugBanner.svg',
-            nodeRef: createRef()
+            nodeRef: createRef(null)
         },
         {
             id: 2,
@@ -82,7 +81,7 @@ export default function Home() {
             isActive: false,
             description: 'Баннер футболок',
             image: '/static/assets/images/tshirtBanner.svg',
-            nodeRef: createRef()
+            nodeRef: createRef(null)
         },
         {
             id: 3,
@@ -90,7 +89,7 @@ export default function Home() {
             isActive: false,
             description: 'Баннер толстовок',
             image: '/static/assets/images/sweatshirtBanner.svg',
-            nodeRef: createRef()
+            nodeRef: createRef(null)
         },
         {
             id: 4,
@@ -98,7 +97,7 @@ export default function Home() {
             isActive: false,
             description: 'Баннер книжек',
             image: '/static/assets/images/bookBanner.svg',
-            nodeRef: createRef()
+            nodeRef: createRef(null)
         },
     ] as Banner[]);
 
@@ -153,13 +152,12 @@ export default function Home() {
     }
 
     const getNextPhoto = () => {
-        console.log(targetId);
-        categories[targetId].isActive = false;
-        banners[targetId].isActive = false;
-
         if(targetId === categories.length - 1) {
             setTargetId(-1);
         }
+
+        categories[targetId].isActive = false;
+        banners[targetId].isActive = false;
 
         setTargetId(targetId++);
 
@@ -177,7 +175,7 @@ export default function Home() {
         }
 
         window.addEventListener('focus', () => {
-            location.reload();
+            // location.reload();
         });
     }, []);
 
@@ -206,39 +204,40 @@ export default function Home() {
                     ))}
                 </div>
 
-                <div className={`bannerWrapper ${isNext ? 'nextSliderEl' : ''} ${isPrevious ? 'previousSliderEl' : ''}`}>
-                    <TransitionGroup>
-                        {banners.map((banner:Banner) => (
-                            <CSSTransition
-                                key={banner.id}
-                                nodeRef={banner.nodeRef}
-                                timeout={1500}
-                                classNames='banner'
-                            >
-                                {banner.isActive && <div ref={banner.nodeRef}>
-                                    <Link href={`/shopItems/${banner.title}`} className="bannerImgRoute">
-                                        <img src={banner.image} alt={banner.description}/>
+                <TransitionGroup className={`bannerWrapper ${isNext ? 'nextSliderEl' : ''} ${isPrevious ? 'previousSliderEl' : ''}`}>
+                    {banners.map(({isActive, id, nodeRef, title, image, description}) => (
+                        <CSSTransition
+                            key={id}
+                            nodeRef={nodeRef}
+                            timeout={1500}
+                            classNames='bannerSlider'
+                            unmountOnExit
+                        >
+                            <>
+                                {isActive && <div ref={nodeRef} className='banner'>
+                                    <Link href={`/shopItems/${title}`} className="bannerImgRoute">
+                                        <img src={image} alt={description}/>
                                     </Link>
                                 </div>}
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
-                </div>
+                            </>
+                        </CSSTransition>
+                    ))}
+                </TransitionGroup>
 
-                <span id="PopularShopItem_Text">
-                    <p>Популярные товары</p>
+                {/*<span id="PopularShopItem_Text">*/}
+                {/*    <p>Популярные товары</p>*/}
 
-                    <Link href="/shopItems" className="seeMoreItemsRoute">Смотреть всe</Link>
-                </span>
+                {/*    <Link href="/shopItems" className="seeMoreItemsRoute">Смотреть всe</Link>*/}
+                {/*</span>*/}
 
-                <div id="PopularShopItemsWrapper">
-                    <ShopItemCard
-                        shopItems={shopItems}
-                        initialShopItems={shopItems}
-                    />
-                </div>
+                {/*<div id="PopularShopItemsWrapper">*/}
+                {/*    <ShopItemCard*/}
+                {/*        shopItems={shopItems}*/}
+                {/*        initialShopItems={shopItems}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
-                <img src="/static/assets/images/bugBountyBanner.svg" alt="BugBounty" id="BugBounty"/>
+                {/*<img src="/static/assets/images/bugBountyBanner.svg" alt="BugBounty" id="BugBounty"/>*/}
             </main>
 
             <TheFooter/>

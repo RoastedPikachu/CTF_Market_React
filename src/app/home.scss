@@ -8,7 +8,7 @@ main {
   #MovingImgWrapper {
     padding-top: 90px;
     width: 100%;
-    height: 135px;
+    height: 235px;
     overflow: hidden;
 
     #TopLogoText {
@@ -93,14 +93,14 @@ main {
   .bannerWrapper {
     position: relative;
     padding: 40px 10% 0 10%;
-    width: 80%;
-    height: 600px;
+    width: calc(80% + 20%);
+    height: calc(600px + 40px);
     overflow: hidden;
 
     .banner {
       position: absolute;
       width: 80%;
-      height: 600px;
+      height: 640px;
 
       .bannerImgRoute {
         img {
@@ -115,40 +115,40 @@ main {
   }
 
   .nextSliderEl {
-    .banner-enter {
+    .bannerSlider-enter {
       transform: translateX(200%);
     }
 
-    .banner-enter-active {
+    .bannerSlider-enter-active {
       transform: translateX(0);
       transition: 1500ms ease;
     }
 
-    .banner-exit {
+    .bannerSlider-exit {
       transform: translateX(0);
     }
 
-    .banner-exit-active {
+    .bannerSlider-exit-active {
       transform: translateX(-120%);
       transition: 1500ms ease;
     }
   }
 
   .previousSliderEl {
-    .banner-enter {
+    .bannerSlider-enter {
       transform: translateX(-120%);
     }
 
-    .banner-enter-active {
+    .bannerSlider-enter-active {
       transform: translateX(0);
       transition: 1500ms ease;
     }
 
-    .banner-exit {
+    .bannerSlider-exit {
       transform: translateX(0);
     }
 
-    .banner-exit-active {
+    .bannerSlider-exit-active {
       transform: translateX(120%);
       transition: 1500ms ease;
     }
@@ -259,7 +259,7 @@ main {
 
     .bannerWrapper {
       padding: 20px 5% 0 5%;
-      width: 90%;
+      width: 100%;
       height: 32.5vh;
 
       .banner {
@@ -354,10 +354,10 @@ main {
     }
 
     .bannerWrapper {
-      height: 26vh;
+      height: 30vh;
 
       .banner {
-        height: 26vh;
+        height: 30vh;
       }
     }
   }
