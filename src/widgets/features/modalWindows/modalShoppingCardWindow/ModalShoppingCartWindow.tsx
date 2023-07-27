@@ -143,7 +143,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({token,
                     <p>{ totalCost } баллов</p>
                 </span>
 
-                <input type="checkbox" style={{display: 'none'}} value={isFAQApproved} onChange={(event) => setIsFAQApproved(event.target.value)} id="FAQApproveInput"/>
+                <input type="checkbox" style={{display: 'none'}} value={isFAQApproved} onClick={() => setIsFAQApproved(!isFAQApproved)} id="FAQApproveInput"/>
 
                 <div id="FAQApprove">
                     <label htmlFor="FAQApproveInput" className={ isFAQApproved ? 'checkmarkActive' : '' }>
@@ -155,7 +155,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({token,
 
                 <input type="text" placeholder="г. Москва, ул. Моросейка, д. 10, кв. 40" value={address} onChange={(event) => setAddress(event.target.value)}/>
 
-            <button className={ (isPointsEnough && isFAQApproved) ? 'active' : '' } onClick={() => makeAnOrder()}>
+                <button className={ (isPointsEnough && isFAQApproved) ? 'active' : '' } onClick={() => makeAnOrder()}>
                     Оплатить
 
                     <img src="/static/assets/images/arrowRightIcon.svg" alt="Оплатить"/>
