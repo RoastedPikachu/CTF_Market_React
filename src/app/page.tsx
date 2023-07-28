@@ -69,7 +69,7 @@ export default function Home() {
     let [banners, setBanners] = useState([
         {
             id: 1,
-            title: 'Кружки',
+            title: 'mugs',
             isActive: true,
             description: 'Баннер кружек',
             image: '/static/assets/images/mugBanner.svg',
@@ -77,7 +77,7 @@ export default function Home() {
         },
         {
             id: 2,
-            title: 'Футболки',
+            title: 't-shirts',
             isActive: false,
             description: 'Баннер футболок',
             image: '/static/assets/images/tshirtBanner.svg',
@@ -85,7 +85,7 @@ export default function Home() {
         },
         {
             id: 3,
-            title: 'Толстовки',
+            title: 'sweatshirts',
             isActive: false,
             description: 'Баннер толстовок',
             image: '/static/assets/images/sweatshirtBanner.svg',
@@ -93,7 +93,7 @@ export default function Home() {
         },
         {
             id: 4,
-            title: 'Книги',
+            title: 'books',
             isActive: false,
             description: 'Баннер книжек',
             image: '/static/assets/images/bookBanner.svg',
@@ -152,23 +152,29 @@ export default function Home() {
     }
 
     function getNextPhoto() {
-        if(targetId !== 3) {
-            console.log('Работаем');
+        if(targetId < 3) {
             // categories[targetId].isActive = false;
             // banners[targetId].isActive = false;
-            setTargetId(prev => prev + 1);
+            increaseTargetId();
         } else {
-            console.log('bdbdfbdb');
-            setTargetId(0);
+            clearTargetId();
         }
     }
 
+    const increaseTargetId = () => {
+        setTargetId(prev => prev + 1);
+    }
+
+    const clearTargetId = () => {
+        console.log('bdbdfbdb');
+        setTargetId(0);
+    }
+
     useEffect(() => {
-        console.log(targetId);
+        console.log(targetId < 3);
         // categories[targetId].isActive = true;
         // banners[targetId].isActive = true;
     }, [targetId]);
-
 
     useEffect(() => {
         bannerInterval = setInterval(() => getNextPhoto(), 5000);
@@ -179,9 +185,10 @@ export default function Home() {
             getShopItems(0, 2);
         }
 
-        window.addEventListener('focus', () => {
-            // location.reload();
-        });
+        // window.addEventListener('focus', () => {
+        //     location.reload();
+        // });
+        return () => clearInterval(bannerInterval);
     }, []);
 
     return (

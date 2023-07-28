@@ -152,7 +152,7 @@ const TheHeader = () => {
             <nav>
                 <Link href="/" className="route">Главная</Link>
 
-                <Link href="/shopItems" className="route">Товары</Link>
+                <Link href="/shopItems/all" className="route">Товары</Link>
 
                 <span>
                     <Link

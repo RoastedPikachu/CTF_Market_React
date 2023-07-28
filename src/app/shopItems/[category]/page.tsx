@@ -145,7 +145,6 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
         api.get(url.toString())
             .then((res:any) => {
                 setShopItems(Object.values(res.data));
-                setInitialShopItems(Object.values(res.data));
 
                 if(params.category) {
                     const category:string = params.category as string;
@@ -171,18 +170,18 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
                 <div id="ShopItemsNav">
                     <button onClick={() => setIsModalFilterActive(!isModalFilterActive)}>
 
-                    <img src="/static/assets/images/filterIcon.svg" alt="Фильтры"/>
+                        <img src="/static/assets/images/filterIcon.svg" alt="Фильтры"/>
                         Фильтры
                     </button>
                 </div>
 
-                 <CSSTransition
+                <CSSTransition
                     in={isModalFilterActive}
                     nodeRef={nodeRef}
                     timeout={250}
                     classNames='modalFilter'
                     unmountOnExit
-                 >
+                >
                     <div id="ModalFilterWindow" ref={nodeRef}>
                         <div id="ModalFilterWindow_Categories">
 
@@ -197,7 +196,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
                                     >
                                         { category.title }
                                     </p>
-                                    ))}
+                                ))}
                             </span>
                         </div>
 
