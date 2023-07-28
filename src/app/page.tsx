@@ -41,8 +41,6 @@ export default function Home() {
     const [isPrevious, setIsPrevious] = useState(false);
     const [isPause, setIsPause] = useState(false);
 
-    const [targetId, setTargetId] = useState(0);
-
     let [categories, setCategories] = useState([
         {
             id: 1,
@@ -105,6 +103,8 @@ export default function Home() {
 
     let bannerInterval: ReturnType<typeof setInterval>;
 
+    let targetId: number = 0;
+
     const setBanner = (category:Category) => {
         if(!isPause) {
             banners.forEach(item => {
@@ -122,7 +122,7 @@ export default function Home() {
                     item.isActive = false;
                 } else {
                     item.isActive = true;
-                    setTargetId(item.id - 1);
+                    targetId = item.id - 1;
                 }
             });
 
@@ -152,29 +152,24 @@ export default function Home() {
     }
 
     function getNextPhoto() {
-        if(targetId < 3) {
-            // categories[targetId].isActive = false;
-            // banners[targetId].isActive = false;
-            increaseTargetId();
-        } else {
-            clearTargetId();
+        categories[targetId].isActive = false;
+        banners[targetId].isActive = false;
+
+        setCategories([...categories]);
+        setBanners([...banners]);
+
+        if(targetId >= 3) {
+            targetId = 0;
+        } else if(targetId < 3) {
+            targetId++;
         }
-    }
 
-    const increaseTargetId = () => {
-        setTargetId(prev => prev + 1);
-    }
+        categories[targetId].isActive = true;
+        banners[targetId].isActive = true;
 
-    const clearTargetId = () => {
-        console.log('bdbdfbdb');
-        setTargetId(0);
+        setCategories([...categories]);
+        setBanners([...banners]);
     }
-
-    useEffect(() => {
-        console.log(targetId < 3);
-        // categories[targetId].isActive = true;
-        // banners[targetId].isActive = true;
-    }, [targetId]);
 
     useEffect(() => {
         bannerInterval = setInterval(() => getNextPhoto(), 5000);
