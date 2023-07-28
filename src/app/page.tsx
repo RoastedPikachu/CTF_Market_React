@@ -37,11 +37,11 @@ interface ShopItem {
 }
 
 export default function Home() {
-    let [isNext, setIsNext] = useState(true);
-    let [isPrevious, setIsPrevious] = useState(false);
-    let [isPause, setIsPause] = useState(false);
+    const [isNext, setIsNext] = useState(true);
+    const [isPrevious, setIsPrevious] = useState(false);
+    const [isPause, setIsPause] = useState(false);
 
-    let [targetId, setTargetId] = useState(0);
+    const [targetId, setTargetId] = useState(0);
 
     let [categories, setCategories] = useState([
         {
@@ -141,29 +141,34 @@ export default function Home() {
         const url = new URL(`https://ctfmarket.ru:8080/api/v1/product/${start}/${stop}`);
 
         axios.get(url.toString(), {
-            headers: { 'Content-Type': 'application/json;charset=utf-8' }
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
-            .then((res:any) => {
+            .then((res: any) => {
                 setShopItems(Object.values(res.data));
             })
-            .catch((err:any) => {
+            .catch((err: any) => {
                 console.log(err);
             })
     }
 
-    const getNextPhoto = () => {
-        if(targetId === categories.length - 1) {
-            setTargetId(-1);
+    function getNextPhoto() {
+        if(targetId !== 3) {
+            console.log('Работаем');
+            // categories[targetId].isActive = false;
+            // banners[targetId].isActive = false;
+            setTargetId(prev => prev + 1);
+        } else {
+            console.log('bdbdfbdb');
+            setTargetId(0);
         }
-
-        categories[targetId].isActive = false;
-        banners[targetId].isActive = false;
-
-        setTargetId(targetId++);
-
-        categories[targetId].isActive = true;
-        banners[targetId].isActive = true;
     }
+
+    useEffect(() => {
+        console.log(targetId);
+        // categories[targetId].isActive = true;
+        // banners[targetId].isActive = true;
+    }, [targetId]);
+
 
     useEffect(() => {
         bannerInterval = setInterval(() => getNextPhoto(), 5000);
