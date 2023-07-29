@@ -16,12 +16,14 @@ interface ShopItem {
     title: string,
     price: number,
     description: string,
+    engCategory: string,
     category: string,
     images: string[]
 }
 
 interface Category {
     id: number,
+    engTitle: string,
     title: string,
     isActive: boolean,
 }
@@ -42,6 +44,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
     const nodeRef = useRef(null)
 
     const [isModalFilterActive, setIsModalFilterActive] = useState(false);
+    const [isArrsLoaded, setIsArrsLoaded] = useState(false);
 
     const [initialShopItems, setInitialShopItems] = useState([] as ShopItem[]);
     const [shopItems, setShopItems] = useState([] as ShopItem[]);
@@ -49,21 +52,25 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
     const [categories, setCategories] = useState([
         {
             id: 1,
+            engTitle: 'mugs',
             title: 'Кружки',
             isActive: false,
         },
         {
             id: 2,
+            engTitle: 't-shirts',
             title: 'Футболки',
             isActive: false,
         },
         {
             id: 3,
+            engTitle: 'sweatshirts',
             title: 'Толстовки',
             isActive: false,
         },
         {
             id: 4,
+            engTitle: 'books',
             title: 'Книги',
             isActive: false,
         },
@@ -105,7 +112,26 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
-    const filterShopItems = (category?:string) => {
+    const filterShopItems = (category:string) => {
+        console.log('');
+        setInitialShopItems(initialShopItems.map(item => {
+            switch(item.category) {
+                case 'Кружки':
+                    item['engCategory'] = 'mugs';
+                    break;
+                case 'Футболки':
+                    item['engCategory'] = 't-shirts';
+                    break;
+                case 'Толстовки':
+                    item['engCategory'] = 'sweatshirts';
+                    break;
+                case 'Книги':
+                    item['engCategory'] = 'books';
+                    break;
+            }
+            return item;
+        }));
+
         if(minPrice && maxPrice) {
             setShopItems(initialShopItems);
 
@@ -127,7 +153,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
         } else {
             categories.forEach(item => {
                 if(item.isActive) {
-                    targetCategories.push(item.title);
+                    targetCategories.push(item.engTitle);
                 }
             })
         }
@@ -135,7 +161,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
         if(targetCategories.length) {
             setShopItems(initialShopItems);
 
-            setShopItems(shopItems.filter(item => targetCategories.includes(item.category)));
+            setShopItems(shopItems.filter(item => targetCategories.includes(item.engCategory)));
         }
     };
 
@@ -145,14 +171,17 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
         api.get(url.toString())
             .then((res:any) => {
                 setShopItems(Object.values(res.data));
+                setInitialShopItems(Object.values(res.data));
 
-                if(params.category) {
-                    const category:string = params.category as string;
-
-                    filterShopItems(category);
-                }
+                setIsArrsLoaded(true);
             });
     }
+
+    useEffect(() => {
+        if(shopItems.length && params.category !== 'all') {
+            filterShopItems(params.category);
+        }
+    }, [isArrsLoaded])
 
     useEffect(() => {
         initAPI(false);

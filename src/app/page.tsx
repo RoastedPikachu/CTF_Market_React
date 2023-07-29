@@ -21,6 +21,7 @@ interface Category {
 
 interface Banner {
     id: number,
+    rusTitle: string,
     title: string,
     isActive: boolean,
     description: string,
@@ -67,6 +68,7 @@ export default function Home() {
     let [banners, setBanners] = useState([
         {
             id: 1,
+            rusTitle: 'Кружки',
             title: 'mugs',
             isActive: true,
             description: 'Баннер кружек',
@@ -75,6 +77,7 @@ export default function Home() {
         },
         {
             id: 2,
+            rusTitle: 'Футболки',
             title: 't-shirts',
             isActive: false,
             description: 'Баннер футболок',
@@ -83,6 +86,7 @@ export default function Home() {
         },
         {
             id: 3,
+            rusTitle: 'Толстовки',
             title: 'sweatshirts',
             isActive: false,
             description: 'Баннер толстовок',
@@ -91,6 +95,7 @@ export default function Home() {
         },
         {
             id: 4,
+            rusTitle: 'Книги',
             title: 'books',
             isActive: false,
             description: 'Баннер книжек',
@@ -107,6 +112,8 @@ export default function Home() {
 
     const setBanner = (category:Category) => {
         if(!isPause) {
+            clearInterval(bannerInterval);
+
             banners.forEach(item => {
                 if(item.isActive) {
                     setIsNext(item.id < category.id);
@@ -118,21 +125,22 @@ export default function Home() {
                     }, 1500);
                 }
 
-                if(item.title != category.title) {
+                if(item.rusTitle != category.title) {
                     item.isActive = false;
                 } else {
                     item.isActive = true;
-                    targetId = item.id - 1;
                 }
             });
-
             categories.forEach(item => item.isActive = false);
+
+            targetId = category.id - 1;
 
             category.isActive = true;
             setIsPause(true);
 
-            clearInterval(bannerInterval);
             bannerInterval = setInterval(() => getNextPhoto(), 5000);
+            clearInterval(bannerInterval);
+
             setTimeout(() => setIsPause(false), 1500);
         }
     }
@@ -231,20 +239,20 @@ export default function Home() {
                     ))}
                 </TransitionGroup>
 
-                {/*<span id="PopularShopItem_Text">*/}
-                {/*    <p>Популярные товары</p>*/}
+                <span id="PopularShopItem_Text">
+                    <p>Популярные товары</p>
 
-                {/*    <Link href="/shopItems" className="seeMoreItemsRoute">Смотреть всe</Link>*/}
-                {/*</span>*/}
+                    <Link href="/shopItems" className="seeMoreItemsRoute">Смотреть всe</Link>
+                </span>
 
-                {/*<div id="PopularShopItemsWrapper">*/}
-                {/*    <ShopItemCard*/}
-                {/*        shopItems={shopItems}*/}
-                {/*        initialShopItems={shopItems}*/}
-                {/*    />*/}
-                {/*</div>*/}
+                <div id="PopularShopItemsWrapper">
+                    <ShopItemCard
+                        shopItems={shopItems}
+                        initialShopItems={shopItems}
+                    />
+                </div>
 
-                {/*<img src="/static/assets/images/bugBountyBanner.svg" alt="BugBounty" id="BugBounty"/>*/}
+                <img src="/static/assets/images/bugBountyBanner.svg" alt="BugBounty" id="BugBounty"/>
             </main>
 
             <TheFooter/>
