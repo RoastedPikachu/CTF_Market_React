@@ -112,7 +112,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
-    const filterShopItems = (category:string) => {
+    const filterShopItems = (category?:string) => {
         console.log('');
         setInitialShopItems(initialShopItems.map(item => {
             switch(item.category) {
