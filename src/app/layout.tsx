@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ReduxProvider } from '@/store/provider';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

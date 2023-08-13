@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+
 import { useAppSelector } from '@/store/storeHooks';
 import { AppState } from '@/store';
 
@@ -190,12 +190,14 @@ const Page = () => {
         console.log(sizes.map(item => item));
     };
 
+    const checkUserIsAdmin = () => {
+        api.post('');
+    }
+
     useEffect(() => {
         initAPI(true);
 
-        // if(!isAdmin) {
-        //     router.push('/');
-        // }
+        checkUserIsAdmin();
     }, []);
 
     return (

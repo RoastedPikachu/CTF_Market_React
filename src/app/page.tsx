@@ -3,31 +3,14 @@ import React, { useState, useEffect, createRef } from 'react';
 import Link from 'next/link';
 import axios from "axios/index";
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
 import TheHeader from '@/widgets/shared/header/TheHeader';
 import TheFooter from '@/widgets/shared/footer/TheFooter';
 import TheCookie from '@/widgets/shared/cookie/TheCookie';
 
 import ShopItemCard from '@/widgets/shared/shopItemCard/ShopItemCard';
+import BannerCarousel from '@/widgets/BannerCarousel';
 
 import './home.scss';
-
-interface Category {
-    id: number,
-    title: string,
-    isActive: boolean
-}
-
-interface Banner {
-    id: number,
-    rusTitle: string,
-    title: string,
-    isActive: boolean,
-    description: string,
-    image: string,
-    nodeRef: React.RefObject<HTMLInputElement>
-}
 
 interface ShopItem {
     id: number,
@@ -42,108 +25,11 @@ export default function Home() {
     const [isPrevious, setIsPrevious] = useState(false);
     const [isPause, setIsPause] = useState(false);
 
-    let [categories, setCategories] = useState([
-        {
-            id: 1,
-            title: 'Кружки',
-            isActive: true
-        },
-        {
-            id: 2,
-            title: 'Футболки',
-            isActive: false
-        },
-        {
-            id: 3,
-            title: 'Толстовки',
-            isActive: false
-        },
-        {
-            id: 4,
-            title: 'Книги',
-            isActive: false
-        }
-    ] as Category[]);
-
-    let [banners, setBanners] = useState([
-        {
-            id: 1,
-            rusTitle: 'Кружки',
-            title: 'mugs',
-            isActive: true,
-            description: 'Баннер кружек',
-            image: '/static/assets/images/mugBanner.svg',
-            nodeRef: createRef(null)
-        },
-        {
-            id: 2,
-            rusTitle: 'Футболки',
-            title: 't-shirts',
-            isActive: false,
-            description: 'Баннер футболок',
-            image: '/static/assets/images/tshirtBanner.svg',
-            nodeRef: createRef(null)
-        },
-        {
-            id: 3,
-            rusTitle: 'Толстовки',
-            title: 'sweatshirts',
-            isActive: false,
-            description: 'Баннер толстовок',
-            image: '/static/assets/images/sweatshirtBanner.svg',
-            nodeRef: createRef(null)
-        },
-        {
-            id: 4,
-            rusTitle: 'Книги',
-            title: 'books',
-            isActive: false,
-            description: 'Баннер книжек',
-            image: '/static/assets/images/bookBanner.svg',
-            nodeRef: createRef(null)
-        },
-    ] as Banner[]);
-
     let [shopItems, setShopItems] = useState([] as ShopItem[]);
 
     let bannerInterval: ReturnType<typeof setInterval>;
 
     let targetId: number = 0;
-
-    const setBanner = (category:Category) => {
-        if(!isPause) {
-            clearInterval(bannerInterval);
-
-            banners.forEach(item => {
-                if(item.isActive) {
-                    setIsNext(item.id < category.id);
-                    setIsPrevious(item.id > category.id);
-
-                    setTimeout(() => {
-                        setIsNext(true);
-                        setIsPrevious(false);
-                    }, 1500);
-                }
-
-                if(item.rusTitle != category.title) {
-                    item.isActive = false;
-                } else {
-                    item.isActive = true;
-                }
-            });
-            categories.forEach(item => item.isActive = false);
-
-            targetId = category.id - 1;
-
-            category.isActive = true;
-            setIsPause(true);
-
-            bannerInterval = setInterval(() => getNextPhoto(), 5000);
-            clearInterval(bannerInterval);
-
-            setTimeout(() => setIsPause(false), 1500);
-        }
-    }
 
     const getShopItems = (start:number, stop:number) => {
         const url = new URL(`https://ctfmarket.ru:8080/api/v1/product/${start}/${stop}`);
@@ -159,29 +45,7 @@ export default function Home() {
             })
     }
 
-    function getNextPhoto() {
-        categories[targetId].isActive = false;
-        banners[targetId].isActive = false;
-
-        setCategories([...categories]);
-        setBanners([...banners]);
-
-        if(targetId >= 3) {
-            targetId = 0;
-        } else if(targetId < 3) {
-            targetId++;
-        }
-
-        categories[targetId].isActive = true;
-        banners[targetId].isActive = true;
-
-        setCategories([...categories]);
-        setBanners([...banners]);
-    }
-
     useEffect(() => {
-        bannerInterval = setInterval(() => getNextPhoto(), 5000);
-
         if(window.innerWidth < 480) {
             getShopItems(0, 1);
         } else {
@@ -191,7 +55,6 @@ export default function Home() {
         // window.addEventListener('focus', () => {
         //     location.reload();
         // });
-        return () => clearInterval(bannerInterval);
     }, []);
 
     return (
@@ -213,31 +76,7 @@ export default function Home() {
 
                 <img src="/static/assets/images/tagline.svg" alt="Привет! Мы - движение CTF, покупай фирменный мерч - оплачивай CTF-койнами" id="Tagline"/>
 
-                <div id="Categories">
-                    {categories.map((category:Category) => (
-                        <p key={category.id} className={ category.isActive ? 'active' : '' } onClick={() => setBanner(category)}>{ category.title }</p>
-                    ))}
-                </div>
-
-                <TransitionGroup className={`bannerWrapper ${isNext ? 'nextSliderEl' : ''} ${isPrevious ? 'previousSliderEl' : ''}`}>
-                    {banners.map(({isActive, id, nodeRef, title, image, description}) => (
-                        <CSSTransition
-                            key={id}
-                            nodeRef={nodeRef}
-                            timeout={1500}
-                            classNames='bannerSlider'
-                            unmountOnExit
-                        >
-                            <>
-                                {isActive && <div ref={nodeRef} className='banner'>
-                                    <Link href={`/shopItems/${title}`} className="bannerImgRoute">
-                                        <img src={image} alt={description}/>
-                                    </Link>
-                                </div>}
-                            </>
-                        </CSSTransition>
-                    ))}
-                </TransitionGroup>
+                <BannerCarousel/>
 
                 <span id="PopularShopItem_Text">
                     <p>Популярные товары</p>
