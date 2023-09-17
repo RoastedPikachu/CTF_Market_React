@@ -8,7 +8,7 @@ import TheFooter from '@/widgets/shared/footer/TheFooter';
 import TheCookie from '@/widgets/shared/cookie/TheCookie';
 
 import ShopItemCard from '@/widgets/shared/shopItemCard/ShopItemCard';
-import BannerCarousel from '@/widgets/BannerCarousel';
+import BannerCarousel from '@/widgets/pageComponents/BannerCarousel';
 
 import './home.scss';
 

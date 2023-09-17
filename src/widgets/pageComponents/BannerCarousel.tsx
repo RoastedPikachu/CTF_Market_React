@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Link from "next/link";
 
-import { Carousel } from 'react-responsive-carousel';
+import Carousel from 'react-responsive-carousel';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import './bannerCarousel.scss';
 
 interface Category {
     id: number,
@@ -36,7 +40,7 @@ const BannerCarousel = () => {
             title: 't-shirts',
             isActive: false,
             description: 'Баннер футболок',
-            image: '/static/assets/images/tshirtBanner.svg',
+            image: '/static/assets/images/tshirtBanner.png',
         },
         {
             id: 3,
@@ -113,6 +117,8 @@ const BannerCarousel = () => {
 
     // bannerInterval = setInterval(() => getNextPhoto(), 5000);
     // return () => clearInterval(bannerInterval);
+    let carouselRef = useRef(null);
+
     let [categories, setCategories] = useState([
         {
             id: 1,
@@ -136,25 +142,65 @@ const BannerCarousel = () => {
         }
     ] as Category[]);
 
+    let [targetId, setTargetId] = useState(0);
+
+    let bannerInterval:ReturnType<typeof setInterval>;
+
+    const setCategory = (category:Category) => {
+        categories.forEach((item:Category) => item.isActive = false);
+
+        setTargetId(category.id - 1);
+    }
+
+    useEffect(() => {
+        console.log(`targetId: ${targetId}`);
+        categories[targetId].isActive = true;
+        setCategories([...categories]);
+    }, [targetId]);
+
+    const changeCategory = () => {
+        categories.forEach((item:Category) => item.isActive = false);
+
+        if(targetId >= 3) {
+            setTargetId(targetId = 0);
+        } else if(targetId < 3) {
+            setTargetId(targetId += 1);
+        }
+    }
+
+    useEffect(() => {
+        bannerInterval = setInterval(() => changeCategory(), 5000);
+
+        return () => {
+          clearInterval(bannerInterval);
+        };
+    }, []);
+
     return (
         <>
-            <Carousel>
+            <div id="Categories">
                 {categories.map((category:Category) => (
-                    <p key={category.id} className={ category.isActive ? 'active' : '' }>{ category.title }</p>
+                    <p key={category.id} onClick={() => setCategory(category)} className={ category.isActive ? 'active' : '' }>{ category.title }</p>
                 ))}
-            </Carousel>
+            </div>
 
-            <Carousel ariaLabel={'div'} interval={5000} autoPlay={true} infiniteLoop={true}>
-                {banners.map((banner:Banner) => (
-                    <>
-                        <div className='banner' key={banner.id}>
-                            <Link href={`/shopItems/${banner.title}`} className="bannerImgRoute">
-                                <img src={banner.image} alt={banner.description}/>
-                            </Link>
-                        </div>
-                    </>
-                ))}
-            </Carousel>
+            {/*<div id='BannerWrapper'>*/}
+            {/*    <Carousel*/}
+            {/*        responsive={responsive}*/}
+            {/*        arrows={false}*/}
+            {/*        infinite={true}*/}
+            {/*        autoPlay={true}*/}
+            {/*        autoPlaySpeed={5000}*/}
+            {/*        transitionDuration={1200}*/}
+            {/*        ref={(el) => (this.Carousel = el)}*/}
+            {/*    >*/}
+            {/*        {banners.map((banner:Banner) => (*/}
+            {/*            <Link href={`/shopItems/${banner.title}`} key={banner.id}>*/}
+            {/*                <img src={banner.image} alt={banner.description} className='bannerImgRoute'/>*/}
+            {/*            </Link>*/}
+            {/*        ))}*/}
+            {/*    </Carousel>*/}
+            {/*</div>*/}
         </>
     );
 };
