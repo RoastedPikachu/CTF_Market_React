@@ -48,23 +48,18 @@ const Page = () => {
 
             } else if (!password.length && token.length) {
                 errorMess = 'Введите пароль';
-
             } else if (!token.length && password.length) {
                 errorMess = 'Введите токен';
-
             } else {
                 errorMess = 'Введите токен и пароль';
             }
 
         } else if (!phoneRegex.test(phone)) {
             errorMess = 'Телефон введён в неправильном формате';
-
         } else if (!emailRegex.test(email)) {
             errorMess = 'Почта введена в неправильном формате';
-
         } else {
             errorMess = 'Телефон и почта введены в неправильном формате';
-
         }
     }
 

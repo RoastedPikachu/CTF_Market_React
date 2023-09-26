@@ -90,7 +90,7 @@ const Page: React.FC<ShopItemProps> = ({ params }) => {
     ] as Size[]);
 
     const isSignIn = useAppSelector((state:AppState) => state.user.isSignIn);
-    let isAlertActive = useAppSelector((state:AppState) => state.user.isSignIn);
+    const isAlertActive = useAppSelector((state:AppState) => state.user.isSignIn);
     const [isSizesActive, setIsSizesActive] = useState(false);
 
     const [targetSize, setTargetSize] = useState('');

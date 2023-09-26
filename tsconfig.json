@@ -23,6 +23,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../../../Library/Application Support/JetBrains/WebStorm2023.1/javascript/extLibs/global-types/node_modules/@types/jest/index.d.ts"
+  ],
+  "exclude": ["node_modules"],
 }
