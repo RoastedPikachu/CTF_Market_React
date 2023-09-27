@@ -40,7 +40,7 @@ const Page = () => {
                 })
                     .then((res:any) => {
                         if (res.data.error) {
-                            throw res.data.error;
+                            throw new Error(res.data.error);
                         } else {
                             router.push('/signIn');
                         }

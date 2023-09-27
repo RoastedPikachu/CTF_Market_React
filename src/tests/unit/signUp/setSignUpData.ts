@@ -1,6 +1,7 @@
+// @ts-ignore
 const axios = require('axios');
 
-function setData(phone:string, email:string, password:string, token:string) {
+function setSignUpData(phone:string, email:string, password:string, token:string) {
     const url = new URL('https://ctfmarket.ru:8080/api/v1/auth/register/');
 
     const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
@@ -40,4 +41,4 @@ function setData(phone:string, email:string, password:string, token:string) {
     }
 }
 
-module.exports = setData;
+module.exports = setSignUpData;
