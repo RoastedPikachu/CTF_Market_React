@@ -51,8 +51,9 @@ export const shoppingCartSlice = createSlice({
         changeTotalCostValue(state: ShoppingCartState, action: PayloadAction<number>) {
             state.totalCost = action.payload;
         },
-
     }
 })
+
+export const { addItemToShoppingCartAction, removeItemFromShoppingCart, changeItemFromShoppingCart, clearShoppingCartAction, changeTotalCostValue } = shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;

@@ -193,7 +193,7 @@ const Page: React.FC<ShopItemsProps> = ({params}) => {
         <>
             <TheHeader/>
 
-            <main>
+            <main data-testid='shopItems'>
                 <img src="/static/assets/images/shopItemsLogo.svg" alt="CTFMarket. Летняя школа CTF 2023" id="ShopItemsLogo"/>
 
                 <div id="ShopItemsNav">

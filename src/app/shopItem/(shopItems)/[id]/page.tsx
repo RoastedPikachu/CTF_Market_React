@@ -89,8 +89,8 @@ const Page: React.FC<ShopItemProps> = ({ params }) => {
         }
     ] as Size[]);
 
-    const isSignIn = useAppSelector((state:AppState) => state.user.isSignIn);
-    const isAlertActive = useAppSelector((state:AppState) => state.user.isSignIn);
+    let isSignIn = useAppSelector((state:AppState) => state.user.isSignIn);
+    let isAlertActive = useAppSelector((state:AppState) => state.user.isSignIn);
     const [isSizesActive, setIsSizesActive] = useState(false);
 
     const [targetSize, setTargetSize] = useState('');
@@ -190,7 +190,7 @@ const Page: React.FC<ShopItemProps> = ({ params }) => {
         <>
             <TheHeader/>
 
-            <main>
+            <main data-testid='shopItem'>
                 <img src="/static/assets/images/shopItemsLogo.svg" alt="CTFMarket. Летняя школа CTF 2023" id="ShopItemsLogo"/>
 
                     <div id="MainShopItemInfo">

@@ -63,7 +63,7 @@ const Page = () => {
     }, [])
 
     return (
-        <main style={{backgroundImage: `url('/static/assets/images/SignInBackground.svg')`}}>
+        <main style={{backgroundImage: `url('/static/assets/images/SignInBackground.svg')`}} data-testid='signIn'>
             <div id="SignIn">
                 <Link href="/" className="signInLogoRoute">
                     <img src="/static/assets/images/Logo.svg" alt="CTFMarket"/>

@@ -50,4 +50,10 @@ describe('Тестирование функции регистрации', () =>
     test('Проверка ввода пароля и токена', () => {
         expect(setDataAboutUser(data.phone, data.email, data.badPassword, data.badToken)).toBe('Введите токен и пароль');
     })
+
+    // test('Проверка перехода на страницу входа', () => {
+    //     setDataAboutUser(data.phone, data.email, data.password, data.token);
+    //
+    //     expect(screen.getByTestId('signInPage')).toBeInTheDocument()
+    // })
 })

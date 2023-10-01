@@ -10,6 +10,9 @@ import TheCookie from '@/widgets/shared/cookie/TheCookie';
 import ShopItemCard from '@/widgets/shared/shopItemCard/ShopItemCard';
 import BannerCarousel from '@/widgets/pageComponents/BannerCarousel';
 
+// Этот компонент для тестирования контекста редюсера корзины
+import ShoppingCartContext from "@/widgets/testComponents/ShoppingCartContext";
+
 import './home.scss';
 
 interface ShopItem {
@@ -97,6 +100,10 @@ export default function Home() {
             <TheFooter/>
 
             <TheCookie/>
+
+            {/*  Этот компонент для тестирования контекста редюсера корзины */}
+
+            <ShoppingCartContext/>
         </>
     );
 };
