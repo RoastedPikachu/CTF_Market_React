@@ -1,277 +1,29 @@
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 400px;
-  background-repeat: no-repeat;
-  background-size: cover;
+h2 {
+  font-family: 'DM Sans', sans-serif;
+}
 
-  #BlurContacts {
-    position: relative;
-    padding: 30px 35% 0 35%;
-    width: 30%;
+p {
+  font-family: 'DM Sans', sans-serif;
+}
 
-    h2 {
-      position: absolute;
-      width: 30%;
-      color: #9afbe7;;
-      font-size: 3em;
-      font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
-      text-align: center;
-      z-index: 9;
-    }
+.footerRoute {
+  @apply text-[#ffffff] text-[1.25rem] font-bold no-underline outline-none;
+  font-family: 'DM Sans', sans-serif;
+}
 
-    p {
-      width: 100%;
-      filter: blur(8px);
-      color: rgba(154, 251, 231, 0.5);
-      font-size: 3em;
-      font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
-      text-align: center;
-    }
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 40px 37.5% 0 32.5%;
-    width: 35%;
-
-    .footerRoute {
-      color: #ffffff;
-      font-size: 20px;
-      font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
-      text-decoration: none;
-      outline: none;
-    }
-    .disabledRoute {
-      pointer-events: none;
-    }
-  }
-
-  #BottomInfo {
-    display: flex;
-    justify-content: space-between;
-    margin: 80px 30% 0 30%;
-    width: 42.5%;
-
-    #BottomInfo_Contacts {
-      width: 45%;
-      height: 80px;
-
-      h3 {
-        color: #9afbe7;
-        font-size: 26px;
-        font-weight: 700;
-        font-family: 'DM Sans', sans-serif;
-      }
-
-      span {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-        width: 95%;
-
-        p {
-          color: #ffffff;
-          font-size: 22px;
-          font-weight: 700;
-          font-family: 'DM Sans', sans-serif;
-        }
-      }
-      span:last-child {
-        margin-top: 7.5px;
-      }
-    }
-    #BottomInfo_SocialNetworks {
-      width: 45%;
-      height: 80px;
-
-      h3 {
-        color: #9afbe7;
-        font-size: 26px;
-        font-weight: 700;
-        font-family: 'DM Sans', sans-serif;
-      }
-
-      span {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        width: 65%;
-      }
-      p {
-        margin-top: 15px;
-        color: #ffffff;
-        font-size: 22px;
-        font-weight: 700;
-        font-family: 'DM Sans', sans-serif;
-      }
-
-      a {
-        width: 25px;
-        height: 25px;
-        img {
-          width: 25px;
-          height: 25px;
-        }
-      }
-    }
-  }
+h3 {
+  font-family: 'DM Sans', sans-serif;
 }
 
 @media(max-width: 480px) {
-  footer {
-    height: 250px;
-
-    #BlurContacts {
-      padding: 20px 0 0 0;
-      width: 100%;
-      height: 35px;
-      text-align: center;
-
-      h2 {
-        width: 100%;
-        font-size: 1.5em;
-      }
-
-      p {
-        font-size: 1.5em;
-      }
-    }
-
-    nav {
-      margin: 25px 7.5% 0 7.5%;
-      width: 85%;
-      .footerRoute {
-        font-size: 16px;
-      }
-    }
-
-    #BottomInfo {
-      margin: 30px 7.5% 0 7.5%;
-      width: 85%;
-      #BottomInfo_Contacts {
-        width: 42.5%;
-        h3 {
-          font-size: 16px;
-        }
-        span {
-          p {
-            font-size: 12px;
-          }
-        }
-        span {
-          margin-top: 15px;
-        }
-      }
-      #BottomInfo_SocialNetworks {
-        width: 50%;
-        h3 {
-          font-size: 16px;
-        }
-        span {
-          margin-top: 15px;
-          width: 65%;
-          height: 15px;
-          p {
-            font-size: 12px;
-          }
-          a {
-            width: 15px;
-            height: 15px;
-            img {
-              width: 15px;
-              height: 15px;
-            }
-          }
-        }
-      }
-    }
+  .footerRoute {
+    @apply text-[1rem];
   }
 }
 
 @media(max-width: 380px) {
-  footer {
-    height: 200px;
-
-    #BlurContacts {
-      height: 50px;
-
-      h2 {
-        font-size: 1.5em;
-      }
-
-      p {
-        font-size: 1.5em;
-      }
-    }
-
-    nav {
-      margin: 15px 7.5% 0 7.5%;
-
-      .footerRoute {
-        font-size: 14px;
-      }
-    }
-
-    #BottomInfo {
-      margin: 20px 10% 0 7.5%;
-      width: 85%;
-      #BottomInfo_Contacts {
-        width: 45%;
-        h3 {
-          font-size: 14px;
-        }
-        span {
-          width: 85%;
-          p {
-            font-size: 10px;
-          }
-        }
-        span {
-          margin-top: 12.5px;
-        }
-      }
-      #BottomInfo_SocialNetworks {
-        width: 42.5%;
-        h3 {
-          font-size: 14px;
-        }
-        span {
-          margin-top: 5px;
-          width: 70%;
-          height: 15px;
-          p {
-            font-size: 10px;
-          }
-          a {
-            width: 12.5px;
-            height: 12.5px;
-            img {
-              width: 12.5px;
-              height: 12.5px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media(max-width: 360px) {
-  footer {
-    #BlurContacts {
-      margin-top: 20px;
-    }
-
-    #BottomInfo {
-      margin: 10px 10% 0 7.5%;
-    }
+  .footerRoute {
+    @apply text-[0.875rem];
   }
 }
 
