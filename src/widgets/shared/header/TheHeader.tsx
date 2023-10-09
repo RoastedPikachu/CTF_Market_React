@@ -149,14 +149,14 @@ const TheHeader = () => {
       <img
         src="/static/assets/images/userAvatar.svg"
         alt="Профиль"
-        className="mlarge:hidden w-[50px] h-[50px] bg-[#747474] rounded-[50%] pointer"
+        className="mlarge:hidden w-[50px] h-[50px] bg-[#747474] rounded-[50%] cursor-pointer"
         onClick={() => setIsModalProfileWindowOpen(!isModalProfileWindowOpen)}
       />
 
       <img
         src="/static/assets/images/hamburgerIcon.svg"
         alt="Меню"
-        className="hidden mlarge:block w-[25px] mmedium:w-[22.5px] msmall:w-[20px] pointer"
+        className="hidden mlarge:block w-[25px] mmedium:w-[22.5px] msmall:w-[20px] cursor-pointer"
         onClick={() => setIsModalProfileWindowOpen(!isModalProfileWindowOpen)}
       />
 
@@ -204,7 +204,7 @@ const TheHeader = () => {
         <img
           src="/static/assets/images/shoppingCartIcon.svg"
           alt="Корзина"
-          className="w-[32.5px] mlarge:w-[25px] mmedium:w-[22.5px] msmall:w-[20px] pointer"
+          className="w-[32.5px] mlarge:w-[25px] mmedium:w-[22.5px] msmall:w-[20px] cursor-pointer"
           onClick={() => changeIsModalShoppingCartOpenStatus()}
         />
 
