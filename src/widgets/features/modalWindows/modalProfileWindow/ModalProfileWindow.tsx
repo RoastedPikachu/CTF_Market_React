@@ -2,12 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-import { userSlice } from "@/store/storeReducers/UserSlice";
-import { shoppingCartSlice } from "@/store/storeReducers/ShoppingCartSlice";
-import { cookieSlice } from "@/store/storeReducers/CookieSlice";
-import { useAppDispatch, useAppSelector } from "@/store/storeHooks";
-import { AppState } from "@/store";
-
 import "./modalProfileWindow.scss";
 
 interface ModalProfileWindowProps {
@@ -19,7 +13,7 @@ interface ModalProfileWindowProps {
   isSignIn: boolean;
   isModalProfileWindowOpen: boolean;
   changeModalProfileOpen: Function;
-  clearUserData: Function;
+  callback: Function;
 }
 
 const ModalProfileWindow: React.FC<ModalProfileWindowProps> = ({
@@ -31,40 +25,13 @@ const ModalProfileWindow: React.FC<ModalProfileWindowProps> = ({
   isSignIn,
   isModalProfileWindowOpen,
   changeModalProfileOpen,
-  clearUserData,
+  callback,
 }) => {
-  const dispatch = useAppDispatch();
-
-  const { changeIsAdmin, changeIsSignIn } = userSlice.actions;
-  const { clearShoppingCartAction } = shoppingCartSlice.actions;
-  const { clearIsCookieOpen } = cookieSlice.actions;
-
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(isModalProfileWindowOpen);
 
-  const signOut = () => {
-    clearUserData();
-
-    if (useAppSelector((state: AppState) => state.user.isAdmin)) {
-      dispatch(changeIsAdmin());
-    }
-
-    dispatch(changeIsSignIn());
-    dispatch(clearShoppingCartAction());
-    dispatch(clearIsCookieOpen());
-
-    (function deleteAllCookies() {
-      let cookies = document.cookie.split(";");
-
-      for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i];
-        let eqPos = cookie.indexOf("=");
-        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      }
-    })();
-
-    window.location.reload();
+  const handleSignOutClick = () => {
+    callback();
   };
 
   useEffect(() => {
@@ -155,7 +122,7 @@ const ModalProfileWindow: React.FC<ModalProfileWindowProps> = ({
       )}
 
       <button
-        onClick={() => signOut()}
+        onClick={handleSignOutClick}
         className="flex items-center mlarge:py-[10px] px-[20px] mlarge:px-0 w-full h-[60px] bg-transparent border-y-[1px] border-[#4b4b4b] text-[#fa3e3e] text-[1.125rem] font-bold cursor-pointer outline-none"
       >
         Выйти из аккаунта

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { shoppingCartSlice } from "@/store/storeReducers/ShoppingCartSlice";
 import { userSlice } from "@/store/storeReducers/UserSlice";
+import { cookieSlice } from "@/store/storeReducers/CookieSlice";
 import { useAppDispatch, useAppSelector } from "@/store/storeHooks";
 import { AppState } from "@/store";
 
@@ -19,8 +20,10 @@ const TheHeader = () => {
 
   const { api, initAPI } = axiosMixins();
 
-  const { changeTotalCostValue } = shoppingCartSlice.actions;
-  const { changeIsAdmin } = userSlice.actions;
+  const { changeTotalCostValue, clearShoppingCartAction } =
+    shoppingCartSlice.actions;
+  const { changeIsAdmin, changeIsSignIn } = userSlice.actions;
+  const { clearIsCookieOpen } = cookieSlice.actions;
 
   const isSignIn = useAppSelector((state: AppState) => state.user.isSignIn);
   const [isModalProfileWindowOpen, setIsModalProfileWindowOpen] =
@@ -30,16 +33,18 @@ const TheHeader = () => {
   const [isPointsEnough, setIsPointsEnough] = useState(false);
 
   const totalCost = useAppSelector(
-    (state: AppState) => state.shoppingCart.totalCost
+    (state: AppState) => state.shoppingCart.totalCost,
   );
 
   const countOfItemsInShoppingCart = useAppSelector(
-    (state: AppState) => state.shoppingCart.countOfItemsInShoppingCart
+    (state: AppState) => state.shoppingCart.countOfItemsInShoppingCart,
   );
 
   const shoppingCartItems = useAppSelector(
-    (state: AppState) => state.shoppingCart.shoppingCart
+    (state: AppState) => state.shoppingCart.shoppingCart,
   );
+
+  const isAdmin = useAppSelector((state: AppState) => state.user.isAdmin);
 
   const [balance, setBalance] = useState(0);
 
@@ -51,11 +56,11 @@ const TheHeader = () => {
   useMemo(() => {
     if (shoppingCartItems.length) {
       const accumArr = shoppingCartItems.map((item) =>
-        item.count > 1 ? +item.price * item.count : +item.price
+        item.count > 1 ? +item.price * item.count : +item.price,
       );
 
       dispatch(
-        changeTotalCostValue(accumArr.reduce((accum, item) => (accum += item)))
+        changeTotalCostValue(accumArr.reduce((accum, item) => (accum += item))),
       );
     } else {
       dispatch(changeTotalCostValue(0));
@@ -78,10 +83,10 @@ const TheHeader = () => {
         //eslint-disable-next-line
         "(?:^|; )" +
           name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-          "=([^;]*)"
-      )
+          "=([^;]*)",
+      ),
     );
-    return (matches ? decodeURIComponent(matches[1]) : undefined).toString();
+    return matches ? decodeURIComponent(matches[1]) : null;
   };
 
   const getInfoAboutUserByToken = () => {
@@ -104,24 +109,49 @@ const TheHeader = () => {
     });
   };
 
-  function makeOrder() {
+  const makeOrder = () => {
     setIsOrderPayed(true);
     getInfoAboutUserByToken();
-  }
+  };
 
-  function clearUserData() {
+  const clearUserData = () => {
     setBalance(0);
     setEmail("");
     setFullName("");
     setPhone("");
-  }
+  };
+
+  const signOut = () => {
+    clearUserData();
+
+    if (isAdmin) {
+      dispatch(changeIsAdmin());
+    }
+
+    dispatch(changeIsSignIn());
+    dispatch(clearShoppingCartAction());
+    dispatch(clearIsCookieOpen());
+
+    (function deleteAllCookies() {
+      let cookies = document.cookie.split(";");
+
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        let eqPos = cookie.indexOf("=");
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+    })();
+
+    window.location.reload();
+  };
 
   useEffect(() => {
-    if (isSignIn) {
-      initAPI(true);
-
-      getInfoAboutUserByToken();
-    }
+    // if (isSignIn) {
+    //   initAPI(true);
+    //
+    //   getInfoAboutUserByToken();
+    // }
 
     window.addEventListener("click", (event) => {
       if (event.target !== null) {
@@ -170,7 +200,7 @@ const TheHeader = () => {
           isSignIn={isSignIn}
           isModalProfileWindowOpen={isModalProfileWindowOpen}
           changeModalProfileOpen={setIsModalProfileWindowOpen}
-          clearUserData={clearUserData}
+          callback={signOut}
         />
       )}
 
