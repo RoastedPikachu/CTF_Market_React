@@ -147,11 +147,11 @@ const TheHeader = () => {
   };
 
   useEffect(() => {
-    // if (isSignIn) {
-    //   initAPI(true);
-    //
-    //   getInfoAboutUserByToken();
-    // }
+    if (isSignIn) {
+      initAPI(true);
+
+      // getInfoAboutUserByToken();
+    }
 
     window.addEventListener("click", (event) => {
       if (event.target !== null) {

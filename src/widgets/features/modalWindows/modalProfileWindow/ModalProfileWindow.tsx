@@ -35,7 +35,7 @@ const ModalProfileWindow: React.FC<ModalProfileWindowProps> = ({
   };
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 480);
+    setIsMobile(window.matchMedia("(max-width: 480px)").matches);
   }, []);
 
   return (

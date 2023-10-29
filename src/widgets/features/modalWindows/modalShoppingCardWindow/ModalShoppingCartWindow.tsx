@@ -107,55 +107,74 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
   }, []);
 
   return (
-    <div id="ModalShoppingCart">
-      <span>
+    <div
+      id="ModalShoppingCart"
+      className="absolute top-[70px] right-[5%] py-[20px] px-[35px] w-[379px] h-auto min-h-[650px] bg-[#1e1e1e] border-[rgba(255,255,255,0.2)] rounded-[20px] z-10"
+    >
+      <span className="flex justify-between items-center w-full h-[70px]">
         <img
           src="/static/assets/images/x-markIcon.svg"
           alt="Назад"
           onClick={() => changeModalShoppingCartActive()}
+          className="w-[22px] h-[22px] cursor-pointer"
         />
 
-        <p>Корзина</p>
+        <p className="text-[#ffffff] text-[1.125rem] font-['Montserrat'] font-bold">
+          Корзина
+        </p>
 
         <img
           src="/static/assets/images/binIcon.svg"
           alt="Очистить корзину"
           onClick={() => clearShoppingCart()}
+          className="w-[26px] cursor-pointer"
         />
       </span>
 
-      <div id="shoppingCartItemsWrapper">
+      <div
+        id="shoppingCartItemsWrapper"
+        className="mt-[20px] w-full h-[280px] overflow-scroll overflow-x-hidden"
+      >
         {shoppingCartItems.map((shoppingCartItem) => (
-          <div className="shoppingCartItem" key={shoppingCartItem.id}>
+          <div
+            key={shoppingCartItem.id}
+            className="shoppingCartItem flex justify-between items-center mt-[20px] w-full h-[85px]"
+          >
             <img
               src={shoppingCartItem.photo}
               alt={shoppingCartItem.title}
-              className="shoppingCartItemImage"
+              className="shoppingCartItemImage w-[85px] h-full bg-[#ffffff] rounded-[10px]"
             />
 
-            <div className="shoppingCartItem_Right">
-              <span>
-                <p>{shoppingCartItem.title}</p>
+            <div className="shoppingCartItem_Right w-[67.5%] h-full">
+              <span className="flex items-center flex-wrap w-full h-[50%] text-[#ffffff] text-[0.875rem]">
+                <p className="ml-0 w-full font-normal">
+                  {shoppingCartItem.title}
+                </p>
 
-                <p>{+shoppingCartItem.price * shoppingCartItem.count} баллов</p>
+                <p className="ml-0 w-full font-bold">
+                  {+shoppingCartItem.price * shoppingCartItem.count} баллов
+                </p>
               </span>
 
-              <div>
-                <span>
+              <div className="flex justify-between items-center mt-[5px] w-full h-[50%]">
+                <span className="flex justify-between items-center flex-nowrap w-[60%] h-full">
                   <button
                     onClick={() =>
                       decreaseShoppingCartItemCount(shoppingCartItem)
                     }
+                    className="flex justify-center items-center w-[60px] h-[30px] bg-[#ffffff] border-0 rounded-[10px] text-[1.125rem] cursor-pointer"
                   >
                     &mdash;
                   </button>
 
-                  <p>{shoppingCartItem.count}</p>
+                  <p className="text-center">{shoppingCartItem.count}</p>
 
                   <button
                     onClick={() =>
                       increaseShoppingCartItemCount(shoppingCartItem)
                     }
+                    className="text-[1.375rem]"
                   >
                     +
                   </button>
@@ -165,6 +184,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
                   src="/static/assets/images/itemBinIcon.svg"
                   alt="Удалить"
                   onClick={() => removeShoppingCartItem(shoppingCartItem.id)}
+                  className="cursor-pointer"
                 />
               </div>
             </div>
@@ -172,17 +192,24 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
         ))}
       </div>
 
-      <div id="ShoppingCart_Bottom">
-        <span id="ShoppingCart_BottomBalance">
-          <p>Баланс</p>
+      <div
+        id="ShoppingCart_Bottom"
+        className="mt-[10px] w-full h-auto min-h-[160px]"
+      >
+        <span id="ShoppingCart_BottomBalance" className="h-[40px] font-bold">
+          <p className="ml-0 text-[rgba(255,255,255,0.6)] text-[1.5rem]">
+            Баланс
+          </p>
 
-          <p>{balance || 0} баллов</p>
+          <p className="text-[#ffffff] text-[1rem]">{balance || 0} баллов</p>
         </span>
 
-        <span>
-          <p>К ОПЛАТЕ</p>
+        <span className="h-[40px] font-bold">
+          <p className="ml-0 text-[rgba(255,255,255,0.6)] text-[1.5rem]">
+            К ОПЛАТЕ
+          </p>
 
-          <p>{totalCost} баллов</p>
+          <p className="text-[#ffffff] text-[1rem]">{totalCost} баллов</p>
         </span>
 
         <input
@@ -193,20 +220,28 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
           id="FAQApproveInput"
         />
 
-        <div id="FAQApprove">
+        <div
+          id="FAQApprove"
+          className="flex justify-between items-start pt-[15px] pb-[10px] w-full h-auto"
+        >
           <label
             htmlFor="FAQApproveInput"
-            className={isFAQApproved ? "checkmarkActive" : ""}
+            className={`w-[25px] h-[25px] bg-[#1e1e1e] border-[#42d4ba] border-[1px] rounded-[5px] duration-[250ms] ease-in-out cursor-pointer ${
+              isFAQApproved
+                ? "flex justify-center items-center bg-[#42d4ba]"
+                : ""
+            }`}
           >
             <img
               src="/static/assets/images/checkmarkIcon.svg"
               alt="Принять условия FAQ"
+              className={isFAQApproved ? "block" : "hidden"}
             />
           </label>
 
-          <p>
+          <p className="w-[85%] text-[#ffffff] text-[1.125rem] font-bold">
             Я прочитал{" "}
-            <Link href="/faq" className="faqRoute">
+            <Link href="/faq" className="text-[#42d4ba]">
               FAQ и согласен с условиями доставки
             </Link>
           </p>
@@ -217,23 +252,34 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
           placeholder="г. Москва, ул. Моросейка, д. 10, кв. 40"
           value={address}
           onChange={(event) => setAddress(event.target.value)}
+          className="mt-[10px] px-[20px] w-full h-[45px] bg-[#434343] border-[rgba(255,255,255,0.6)] border-[1px] rounded-[10px] text-[#bababa] text-[0.875rem] font-bold outline-none"
         />
 
         <button
-          className={isPointsEnough && isFAQApproved ? "active" : ""}
           onClick={() => makeAnOrder()}
+          className={`flex justify-between items-center mt-[10px] px-[20px] w-full h-[50px] border-0 rounded-[10px] text-[1rem] font-bold duration-[250ms] ease-in-out cursor-pointer ${
+            isPointsEnough && isFAQApproved
+              ? "bg-[#42d4ba] text-[#ffffff]"
+              : "bg-[#434343] text-[#9a9a9a]"
+          }`}
         >
           Оплатить
           <img src="/static/assets/images/arrowRightIcon.svg" alt="Оплатить" />
         </button>
 
         {isOrderPayed && (
-          <span id="OrderIsPayed">
-            <p>Заказ оплачен</p>
+          <span
+            id="OrderIsPayed"
+            className="flex justify-between items-center pt-[15px] px-[23%] h-[20px] w-[54%]"
+          >
+            <p className="text-[#a5a5a5] text-[1.125rem] font-bold">
+              Заказ оплачен
+            </p>
 
             <img
               src="/static/assets/images/orderIsPayedIcon.svg"
               alt="Заказ Оплачен"
+              className="w-[20px] h-[20px]"
             />
           </span>
         )}
