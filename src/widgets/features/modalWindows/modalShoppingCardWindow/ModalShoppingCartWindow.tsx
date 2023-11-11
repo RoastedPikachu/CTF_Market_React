@@ -109,7 +109,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
   return (
     <div
       id="ModalShoppingCart"
-      className="absolute top-[70px] right-[5%] py-[20px] px-[35px] w-[379px] h-auto min-h-[650px] bg-[#1e1e1e] border-[rgba(255,255,255,0.2)] rounded-[20px] z-10"
+      className="absolute top-[70px] mlarge:top-0 right-[5%] mlarge:right-0 py-[20px] px-[35px] w-[379px] mlarge:w-full h-auto mlarge:h-screen min-h-[650px] bg-[#1e1e1e] border-[rgba(255,255,255,0.2)] border-[2px] rounded-[20px] mlarge:rounded-0 z-10"
     >
       <span className="flex justify-between items-center w-full h-[70px]">
         <img
@@ -119,7 +119,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
           className="w-[22px] h-[22px] cursor-pointer"
         />
 
-        <p className="text-[#ffffff] text-[1.125rem] font-['Montserrat'] font-bold">
+        <p className="mlarge:block text-[#ffffff] text-[1.125rem] font-['Montserrat'] font-bold">
           Корзина
         </p>
 
@@ -133,7 +133,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
 
       <div
         id="shoppingCartItemsWrapper"
-        className="mt-[20px] w-full h-[280px] overflow-scroll overflow-x-hidden"
+        className="mt-[20px] mlarge:mt-[10px] w-full h-[280px] overflow-scroll overflow-x-hidden"
       >
         {shoppingCartItems.map((shoppingCartItem) => (
           <div
@@ -194,17 +194,20 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
 
       <div
         id="ShoppingCart_Bottom"
-        className="mt-[10px] w-full h-auto min-h-[160px]"
+        className="mt-[10px] w-full h-auto min-h-[160px] mlarge:min-h-[100px]"
       >
-        <span id="ShoppingCart_BottomBalance" className="h-[40px] font-bold">
-          <p className="ml-0 text-[rgba(255,255,255,0.6)] text-[1.5rem]">
+        <span
+          id="ShoppingCart_BottomBalance"
+          className="flex justify-between items-center w-full h-[40px] font-bold"
+        >
+          <p className="ml-0 text-[rgba(255,255,255,0.6)] text-[1.25rem]">
             Баланс
           </p>
 
           <p className="text-[#ffffff] text-[1rem]">{balance || 0} баллов</p>
         </span>
 
-        <span className="h-[40px] font-bold">
+        <span className="flex justify-between items-center w-full h-[40px] font-bold">
           <p className="ml-0 text-[rgba(255,255,255,0.6)] text-[1.5rem]">
             К ОПЛАТЕ
           </p>
@@ -222,7 +225,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
 
         <div
           id="FAQApprove"
-          className="flex justify-between items-start pt-[15px] pb-[10px] w-full h-auto"
+          className="flex justify-between items-start pt-[15px] pb-[10px] w-full h-auto mmedium:text-[0.875rem]"
         >
           <label
             htmlFor="FAQApproveInput"
@@ -241,7 +244,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
 
           <p className="w-[85%] text-[#ffffff] text-[1.125rem] font-bold">
             Я прочитал{" "}
-            <Link href="/faq" className="text-[#42d4ba]">
+            <Link href="/faq" className="text-[#42d4ba] underline">
               FAQ и согласен с условиями доставки
             </Link>
           </p>
@@ -270,7 +273,7 @@ const ModalShoppingCartWindow: React.FC<ModalShoppingCartWindowProps> = ({
         {isOrderPayed && (
           <span
             id="OrderIsPayed"
-            className="flex justify-between items-center pt-[15px] px-[23%] h-[20px] w-[54%]"
+            className="flex justify-between items-center pt-[15px] px-[23%] mlarge:px-[26%] mmedium:px-[20%] h-[20px] w-[54%] mlarge:w-[48%] mmedium:w-[55%] msmall:w-[60%]"
           >
             <p className="text-[#a5a5a5] text-[1.125rem] font-bold">
               Заказ оплачен

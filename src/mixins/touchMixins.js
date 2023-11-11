@@ -1,22 +1,22 @@
-import {useState} from 'react';
-export default function() {
+import { useState } from "react";
 
-    const [firstTouchCoordinates, setFTC] = useState(0);
-    const [lastTouchCoordinates, setLTC] = useState(0);
+export default function () {
+  const [firstTouchCoordinates, setFTC] = useState(0);
+  const [lastTouchCoordinates, setLTC] = useState(0);
 
-    const changePhotoByTouch = (event, getNext, getPrevious) => {
-        setLTC(event.changedTouches[0].pageX);
+  const changePhotoByTouch = (event, getNext, getPrevious) => {
+    setLTC(event.changedTouches[0].pageX);
 
-        if(firstTouchCoordinates > lastTouchCoordinates) {
-            getPrevious();
-        } else if(firstTouchCoordinates < lastTouchCoordinates) {
-            getNext();
-        }
+    if (firstTouchCoordinates > lastTouchCoordinates) {
+      getPrevious();
+    } else if (firstTouchCoordinates < lastTouchCoordinates) {
+      getNext();
     }
+  };
 
-    return {
-        firstTouchCoordinates,
-        lastTouchCoordinates,
-        changePhotoByTouch
-    }
+  return {
+    firstTouchCoordinates,
+    lastTouchCoordinates,
+    changePhotoByTouch,
+  };
 }
